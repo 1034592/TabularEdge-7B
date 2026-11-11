@@ -160,7 +160,7 @@ python test_cases/verify_gold.py outputs/gold   # independent row-by-row verific
 
 ```bash
 # Weights live on Hugging Face; the code repository carries no model files.
-huggingface-cli download AngranFei/TabularEdge-7B-GGUF TabularEdge-7B-Q4_K_M.gguf --local-dir models
+huggingface-cli download Akuabliton/TabularEdge-7B-GGUF TabularEdge-7B-Q4_K_M.gguf --local-dir models
 ```
 
 ### 3. Start the local runtime

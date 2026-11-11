@@ -35,7 +35,7 @@ model-index:
 
 | | |
 |---|---|
-| **Model repository** | `https://huggingface.co/AngranFei/TabularEdge-7B-GGUF` |
+| **Model repository** | `https://huggingface.co/Akuabliton/TabularEdge-7B-GGUF` |
 | **Code** | `https://github.com/1034592/TabularEdge-7B` |
 | **File** | `TabularEdge-7B-Q4_K_M.gguf`: 4.36 GiB, sha256 `d00bdc02d74aa29a397e0f73c07903d8188022b345c11493893009ec0afd29bb` |
 | **Base model** | [Qwen/Qwen2.5-Coder-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct) (7.61B parameters, 28 layers, GQA 28Q/4KV, Apache-2.0) |
