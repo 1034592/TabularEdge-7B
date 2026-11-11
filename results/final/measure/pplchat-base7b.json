@@ -1,0 +1,6 @@
+{
+ "n_rows": 171,
+ "n_tokens": 45938,
+ "ppl": 1.1885,
+ "model": "models/Qwen2.5-Coder-7B-Instruct"
+}

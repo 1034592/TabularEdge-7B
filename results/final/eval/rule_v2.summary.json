@@ -1,0 +1,80 @@
+{
+ "test_v2_id": {
+  "n": 536,
+  "json_ok": 1.0,
+  "valid": 0.618,
+  "exact": 0.039,
+  "exec_eq": 0.071,
+  "amb_recall": 0.864,
+  "n_amb": 88,
+  "amb_fp": 0.926,
+  "cf_both": 0.035,
+  "n_pairs": 170,
+  "sec_avg": 0.08,
+  "tok_s": null,
+  "amb_recall_by_kind": {
+   "A1": 1.0,
+   "A2": 0.333,
+   "A3": 0.529,
+   "A4": 1.0,
+   "A5": 1.0
+  },
+  "exec_eq_risky": 0.036
+ },
+ "test_v2_ood": {
+  "n": 598,
+  "json_ok": 1.0,
+  "valid": 0.615,
+  "exact": 0.099,
+  "exec_eq": 0.132,
+  "amb_recall": 0.922,
+  "n_amb": 77,
+  "amb_fp": 0.854,
+  "cf_both": 0.035,
+  "n_pairs": 198,
+  "sec_avg": 0.08,
+  "tok_s": null,
+  "amb_recall_by_kind": {
+   "A1": 1.0,
+   "A2": 0.857,
+   "A3": 0.375,
+   "A4": 1.0,
+   "A5": 1.0
+  },
+  "exec_eq_risky": 0.115
+ },
+ "test_v2_noisy": {
+  "n": 598,
+  "json_ok": 1.0,
+  "valid": 0.537,
+  "exact": 0.074,
+  "exec_eq": 0.099,
+  "amb_recall": 0.922,
+  "n_amb": 77,
+  "amb_fp": 0.898,
+  "cf_both": 0.02,
+  "n_pairs": 198,
+  "sec_avg": 0.07,
+  "tok_s": null,
+  "amb_recall_by_kind": {
+   "A1": 1.0,
+   "A2": 0.857,
+   "A3": 0.5,
+   "A4": 0.933,
+   "A5": 1.0
+  },
+  "exec_eq_by_noise": {
+   "en_abbr": 0.0,
+   "filler": 0.095,
+   "homophone": 0.085,
+   "initials": 0.0,
+   "invert": 0.222,
+   "keyboard": 0.066,
+   "lower": 0.077,
+   "mix": 0.061,
+   "punct": 0.041
+  },
+  "exec_eq_noised": 0.08,
+  "exec_eq_risky": 0.096
+ }
+}

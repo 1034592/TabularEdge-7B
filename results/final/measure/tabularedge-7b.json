@@ -1,0 +1,161 @@
+{
+ "sumifs": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 7.923,
+  "n": 40
+ },
+ "sumifs[SUMIF]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 7.72,
+  "n": 21
+ },
+ "sumifs[SUMIFS]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 8.148,
+  "n": 19
+ },
+ "vlookup": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 3.96,
+  "n": 30
+ },
+ "xlookup": {
+  "pair_acc": 1.0,
+  "top1": 0.75,
+  "margin": 2.087,
+  "n": 20
+ },
+ "repeat": {
+  "rep_rate": 0.0792,
+  "loop_frac": 0.0,
+  "unfinished": 0.4,
+  "n": 20,
+  "samples": [
+   {
+    "id": "repeat_10",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " there's no default case specified. To handle unexpected inputs gracefully, you could add an additional argument at the end like this: =SWITCH(B7,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid input\") which would display \"Invalid input\" for numbers not between 1 and 7.<|im_end|>"
+   },
+   {
+    "id": "repeat_32",
+    "finished": true,
+    "loop_period": 0,
+    "tail": ",E9>=60),\"D\",IF(AND(E9<60,E9>=55),\"E\",\"F\")))))\n\nThis formula uses nested IF functions to check the value in cell E9 and return the corresponding grade. The AND function is used to ensure that only the correct range of values returns a grade. If none of the conditions are met, the formula returns \"F\".<|im_end|>"
+   },
+   {
+    "id": "repeat_13",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月     |\n| 3    | 三月     |\n| ...  | ...      |\n\n然后，你可以在 C5 单元格中输入以下公式：\n\n```excel\n=VLOOKUP(C5, $E$1:$F$12, 2, FALSE)\n```\n\n这个公式会在 E1:F12 区域中查找 C5 的值，并"
+   },
+   {
+    "id": "repeat_27",
+    "finished": true,
+    "loop_period": 0,
+    "tail": ")\r\n```\r\n\r\n这个公式的意思是：在“华北”区域中，计算1月、2月和3月的销售额总和。SUMIFS函数允许你根据多个条件进行求和。在这个例子中，我们有两个条件：一个是区域必须是“华北”，另一个是月份必须是1、2或3。SUMIFS会将满足这两个条件的所有销售额相加。<|im_end|>"
+   },
+   {
+    "id": "repeat_16",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "\",IF(AND(B6<65,B6>=60),\"D\",IF(AND(B6<60,B6>=55),\"E\",\"F\")))))\n\nThis formula uses nested IF functions to check the value of B6 against the grade boundaries and returns the corresponding letter grade. The AND function is used to ensure that only the correct grade range is checked for each condition.<|im_end|>"
+   },
+   {
+    "id": "repeat_17",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月\",$E$9=3,\"三月\",$E$9=4,\"四月\",$E$9=5,\"五月\",$E$9=6,\"六月\",$E$9=7,\"七月\",$E$9=8,\"八月\",$E$9=9,\"九月\",$E$9=10,\"十月\",$E$9=11,\"十一"
+   },
+   {
+    "id": "repeat_38",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid\")\nThis formula uses the SWITCH function to map numbers 1 through 7 in cell C3 to their corresponding weekday names. If the value in C3 is not between 1 and 7, it returns \"Invalid\".<|im_end|>"
+   },
+   {
+    "id": "repeat_11",
+    "finished": true,
+    "loop_period": 0,
+    "tail": ")\r\n```\r\n\r\n这个公式的意思是：在“华北”区域中，计算1月、2月和3月的销售额总和。SUMIFS函数允许你根据多个条件进行求和。在这个例子中，我们有两个条件：一个是区域必须是“华北”，另一个是月份必须是1、2或3。SUMIFS会将满足这两个条件的所有销售额相加。<|im_end|>"
+   },
+   {
+    "id": "repeat_34",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " values gracefully, you could add a default case like this: =SWITCH(E3,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid Day\") This way, if E3 contains a number not between 1 and 7, the formula will return \"Invalid Day\" instead of an error.<|im_end|>"
+   },
+   {
+    "id": "repeat_21",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月     |\n| 3    | 三月     |\n| ...  | ...      |\n\n然后，你可以在 C2 单元格中输入以下公式：\n\n```excel\n=VLOOKUP(C2, $E$1:$F$12, 2, FALSE)\n```\n\n这个公式会在 E1:F12 区域中查找 C2 的值，并"
+   },
+   {
+    "id": "repeat_9",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月     |\n| 3    | 三月     |\n| ...  | ...      |\n\n然后，你可以在 D8 单元格中输入以下公式：\n\n```excel\n=VLOOKUP(D8, $E$1:$F$12, 2, FALSE)\n```\n\n这个公式会在 E1:F12 区域中查找 D8 的值，并"
+   },
+   {
+    "id": "repeat_15",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " criteria_range1, criteria1, [criteria_range2, criteria2], ...)\n```\n\n例如，假设我们有一个销售数据表，其中包含“产品”、“地区”和“销售额”列，我们想要计算产品为“苹果”，地区为“华东”的总销售额，可以使用以下公式：\n\n```excel\n=SUMIFS(销售额, 产品,\"苹果\", 地区,\""
+   },
+   {
+    "id": "repeat_25",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月     |\n| 3    | 三月     |\n| ...  | ...      |\n\n然后，你可以在 C2 单元格中输入以下公式：\n\n```excel\n=VLOOKUP(C2, $E$1:$F$12, 2, FALSE)\n```\n\n这个公式会在 E1:F12 区域中查找 C2 的值，并"
+   },
+   {
+    "id": "repeat_14",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " E8 and returns the corresponding day of the week as text. The numbers 1 through 7 represent Monday through Sunday respectively.\nThe SWITCH function is used here instead of IF statements because it's more concise for this type of lookup where you're mapping one set of values (numbers) to another (day names). It also avoids nesting multiple IFs which can get messy quickly with many conditions.<|im_end|>"
+   },
+   {
+    "id": "repeat_18",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " in cell C9 and returns the corresponding day of the week as text. If the value is not between 1 and 7, it will return an error.\nTo use this formula, simply enter it into a new cell where you want the result to appear. Then press Enter to calculate the formula. The result should be the name of the day corresponding to the number in cell C9.<|im_end|>"
+   },
+   {
+    "id": "repeat_5",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月     |\n| 3    | 三月     |\n| ...  | ...      |\n| 12   | 十二月   |\n\n然后，你可以在 B8 单元格中输入以下公式：\n\n```excel\n=VLOOKUP(B8, $E$1:$F$12, 2, FALSE)\n```\n\n这个公式会在 E1:F"
+   },
+   {
+    "id": "repeat_1",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月     |\n| 3    | 三月     |\n| ...  | ...      |\n| 12   | 十二月   |\n\n然后，你可以在 D6 单元格中输入以下公式：\n\n```excel\n=VLOOKUP(D6, $E$1:$F$12, 2, FALSE)\n```\n\n这个公式会在 E1:F"
+   },
+   {
+    "id": "repeat_28",
+    "finished": true,
+    "loop_period": 0,
+    "tail": ",E2>=50),\"D\",IF(AND(E2<50,E2>=45),\"E\",\"F\")))))\n\nThis formula uses nested IF functions to check the value in cell E2 and return the corresponding grade. The AND function is used to ensure that only the correct range of values returns a grade. If none of the conditions are met, the formula returns \"F\".<|im_end|>"
+   },
+   {
+    "id": "repeat_31",
+    "finished": true,
+    "loop_period": 0,
+    "tail": ")\r\n```\r\n\r\n这个公式的意思是：在“华北”区域中，计算1月、2月和3月的销售额总和。SUMIFS函数允许你根据多个条件进行求和。在这个例子中，我们有两个条件：一个是区域必须是“华北”，另一个是月份必须是1、2或3。SUMIFS会将满足这两个条件的所有销售额相加。<|im_end|>"
+   },
+   {
+    "id": "repeat_30",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " E8 and returns the corresponding day of the week as text. The numbers 1 through 7 represent Monday through Sunday respectively.\nThe SWITCH function is used here instead of IF statements because it's more concise for this type of lookup where you're mapping one set of values (numbers) to another (day names). It also avoids nesting multiple IFs which can get messy quickly with many conditions.<|im_end|>"
+   }
+  ]
+ },
+ "ppl": 15.592
+}

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TabularEdge 运行指南</title>
+<style>
+:root{--bg:#ffffff;--fg:#1f2328;--muted:#59636e;--line:#d1d9e0;--accent:#1f6feb;--soft:#f6f8fa;--warn:#9a6700;--bad:#cf222e;--ok:#1a7f37}
+@media (prefers-color-scheme:dark){:root{--bg:#0d1117;--fg:#e6edf3;--muted:#9198a1;--line:#30363d;--accent:#4493f8;--soft:#161b22;--warn:#d29922;--bad:#f85149;--ok:#3fb950}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 "Microsoft YaHei UI","PingFang SC",system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:26px;margin:0 0 4px}h2{font-size:19px;margin:34px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h3{font-size:16px;margin:22px 0 6px}
+.sub{color:var(--muted);margin:0 0 18px}
+code,kbd{font-family:Consolas,monospace;background:var(--soft);border:1px solid var(--line);border-radius:4px;padding:0 5px;font-size:13px}
+table{border-collapse:collapse;width:100%;margin:8px 0;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:var(--soft)}
+.box{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin:10px 0}
+.warn{border-left-color:var(--warn)}
+ol li,ul li{margin:3px 0}
+.ok{color:var(--ok);font-weight:600}.bad{color:var(--bad);font-weight:600}.w{color:var(--warn);font-weight:600}
+</style>
+</head>
+<body><main>
+<h1>TabularEdge 运行指南</h1>
+<p class="sub">本地离线表格智能助手 · 模型 TabularEdge-7B（Q4_K_M，4.36 GiB）· 适配 i7-11800H + RTX 3050 Laptop 4GB + Excel 2019</p>
+
+<h2>1. 三步开始</h2>
+<ol>
+<li>双击 <code>启动TabularEdge.bat</code>（或直接双击 <code>TabularEdge.exe</code>）。右上角圆点变绿、显示“就绪”即可使用（首次加载模型约 10–30 秒）。</li>
+<li>左侧默认已打开 <code>test_cases</code> 文件夹；顶部“示例场景”下拉框选一个场景，指令会自动填好。</li>
+<li>按 <kbd>Enter</kbd>（或“解析指令”）→ 看“我理解的是：……”和计划预览 → 点“▶ 一键执行” → 点“打开结果”。多步场景点“下一步指令”，程序已自动切到上一步的结果文件。</li>
+</ol>
+<div class="box">想重新体验？双击 <code>重置示例表格.bat</code>，10 个示例表格恢复原样，生成的结果和备份一并清掉。</div>
+
+<h2>2. 界面说明</h2>
+<table>
+<tr><th>区域</th><th>作用</th></tr>
+<tr><td>右上角 语言</td><td>中文 / English 界面切换（指令本身中英文都能理解）</td></tr>
+<tr><td>右上角 引擎</td><td>“自动（GPU+CPU 混合）”：按空闲显存自动决定放多少层到显卡，其余走内存和 CPU；显存不够会自动减层重试，再不行退回纯 CPU。“纯 CPU”：完全不用显卡。状态栏显示当前放到显卡的层数和生成速度（tok/s）。</td></tr>
+<tr><td>工作目录</td><td>选择你自己的 Excel 文件夹（“选择…”或直接粘贴路径后回车）。只处理这个文件夹里的文件，越界路径一律拒绝。</td></tr>
+<tr><td>输入框</td><td><kbd>Enter</kbd> 提交，<kbd>Shift</kbd>+<kbd>Enter</kbd> 换行。指令里提到同目录下的其它文件名（如“员工花名册”），会自动把它当参考表带进来。</td></tr>
+<tr><td>我理解的是</td><td>模型流式输出时最先给出的一句话摘要，用来快速确认它没理解错。</td></tr>
+<tr><td>计划预览</td><td>每一步要做什么（人话）。⚠ 标记的是高危步骤。模型拿不准时，上方会出现“需要你确认的地方”，可以改选另一种理解。</td></tr>
+<tr><td>一键执行</td><td>删除整行、去重、覆盖原文件三类操作执行前一定弹窗确认（这是代码里的硬规则，不依赖模型）。默认结果另存为 <code>*_处理后.xlsx</code>，原表不动；如果你要求覆盖原文件，会先自动备份到 <code>_backup</code> 文件夹。</td></tr>
+<tr><td>结果</td><td>列出生成/修改的文件，双击或“打开结果”直接用 Excel 打开；“打开所在文件夹”定位到文件。</td></tr>
+</table>
+
+<h2>3. 10 个实测场景</h2>
+<p>文件都在 <code>test_cases</code>。表格数据为程序合成（不含任何真实个人信息）。</p>
+<h3>1. 跨文件工号匹配 + 提成档位动态查找 + 条件抵扣</h3><p>文件：<code>01_销售业绩.xlsx</code>（表 <code>10月业绩</code>）；参考文件：<code>01_员工花名册.xlsx</code>、<code>01_提成档位.xlsx</code>（指令里提到名字即自动载入）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>根据员工花名册按工号把部门和职级匹配过来，花名册里找不到的写“未登记”</td><td>新增 部门、职级 两列（XLOOKUP 活公式引用花名册表），SR2001/SR2002 显示“未登记”</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>2</td><td>加一列净销售额=销售额-退货额</td><td>净销售额活公式列</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>3</td><td>加一列提成比例=VLOOKUP(净销售额,提成档位!A:B,2,TRUE)</td><td>提成比例列：按净销售额近似匹配档位（找不超过净销售额的最大档位下限），活公式</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>4</td><td>加一列应发提成：回款状态是未回款的记0，否则等于净销售额×提成比例</td><td>应发提成活公式列；未回款为 0</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+</table>
+<h3>2. 杂乱流水清洗：正则提取订单号 + 中英文括号清理 + 剔除退款</h3><p>文件：<code>02_银行流水.xlsx</code>（表 <code>10月流水</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>从备注里把SO开头的订单号（比如 SO20261003-17）提取出来，单独放一列“订单号”，没有的留空</td><td>新增 订单号 列：正则提取 SO+8位日期-2位序号（Excel 2019 无 REGEXEXTRACT → 写入提取结果）</td><td><span class="w">◐ 订单号/清洗/删行结果正确；提取不到订单号的 26 行显示 #N/A（应为空白）</span></td></tr>
+<tr><td>2</td><td>备注里中英文括号连同括号里的内容都去掉，摘要去掉多余空格</td><td>备注中 （…）(…) 整段清除（订单号已在上一步提取保存）；摘要首尾空格去掉</td><td><span class="w">◐ 订单号/清洗/删行结果正确；提取不到订单号的 26 行显示 #N/A（应为空白）</span></td></tr>
+<tr><td>3</td><td>摘要里带“退款”的行全部删掉</td><td>弹窗确认后删除退款行；结果另存，原表不动</td><td><span class="w">◐ 订单号/清洗/删行结果正确；提取不到订单号的 26 行显示 #N/A（应为空白）</span>（弹窗确认：删除整行）</td></tr>
+</table>
+<h3>3. 多条件加权汇总：达标率阈值 + 分部门分季度活公式汇总</h3><p>文件：<code>03_季度绩效.xlsx</code>（表 <code>绩效明细</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>加一列达标率=完成额/目标额，再加一列核算奖金：达标率大于等于80%的按完成额×权重系数×5%算，不到80%的记0</td><td>达标率、核算奖金两列活公式；达标率&lt;0.8 的奖金为 0</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>2</td><td>按部门和季度汇总核算奖金和完成额，放新表“部门季度汇总”，用公式，明细改了汇总自动更新</td><td>新表 16 行（4 部门 × 4 季度），SUMIFS 活公式</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+</table>
+<h3>4. 脏数据去重 + 按大区拆分成独立文件</h3><p>文件：<code>04_客户订单.xlsx</code>（表 <code>订单汇总</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>把完全重复的行去掉，然后按大区拆成单独的文件，放到“按大区拆分”文件夹里</td><td>弹窗确认去重（23 行重复）；生成 按大区拆分/华东.xlsx 等 5 个文件，每个文件带表头</td><td><span class="ok">✔ 与标准答案一致</span>（弹窗确认：去重）</td></tr>
+</table>
+<h3>5. 活规则动态高亮：负数标红 / 超期标黄 / 前10%浅绿加粗</h3><p>文件：<code>05_项目进度.xlsx</code>（表 <code>项目台账</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>预算余额是负数的标红，超期天数大于30天的整行标黄</td><td>两条条件格式规则（活规则，改数自动变色）</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>2</td><td>加一列完成度百分位=PERCENTRANK.INC(完成度整列,完成度)，完成度百分位大于等于0.9的标浅绿色背景、字体加粗</td><td>新增百分位活公式列 + 条件格式 ≥0.9 浅绿加粗；改完成度后自动重新排名变色</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+</table>
+<h3>6. 非标准日期与金额规范化 + 提取年月 + 按周聚合</h3><p>文件：<code>06_报销明细.xlsx</code>（表 <code>报销明细</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>金额列里的¥、￥、逗号和“元”都去掉</td><td>金额变成纯数字文本</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>2</td><td>报销日期里的“年”“月”“.”“/”都替换成“-”，再把“日”删掉</td><td>日期统一成 2026-9-5 这种文本格式</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>3</td><td>加一列金额数值=VALUE(金额)，加一列标准日期=DATEVALUE(报销日期)，再加一列年月=TEXT(标准日期,&quot;yyyy-mm&quot;)，再加一列周次=ISOWEEKNUM(标准日期)</td><td>四列活公式；周次是 ISO 周号</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>4</td><td>按周次汇总金额数值，放新表“按周汇总”</td><td>新表按周次分组的 SUMIFS 活公式</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+</table>
+<h3>7. 复合去重与逆向查找：重复订单保留最新一条，其余归档</h3><p>文件：<code>07_订单变更记录.xlsx</code>（表 <code>订单</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>加一列“是否最新”：同一订单号里更新时间等于该订单最大更新时间的标“保留”，其他标“归档”（用MAXIFS）</td><td>活公式 =IF(更新时间=MAXIFS(更新时间列,订单号列,本行订单号),&quot;保留&quot;,&quot;归档&quot;)</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>2</td><td>把是否最新等于归档的行筛选到新表“归档记录”</td><td>新表 归档记录（静态值）</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>3</td><td>然后把订单表里是否最新等于归档的行删掉</td><td>弹窗确认后删除；每个订单号只剩最新一条</td><td><span class="ok">✔ 与标准答案一致</span>（弹窗确认：删除整行）</td></tr>
+</table>
+<h3>8. 动态数组：一键拉出不重复供应商名单 + 实时统计</h3><p>文件：<code>08_采购明细.xlsx</code>（表 <code>采购</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>用动态公式拉出不重复的供应商名单放到新表“供应商清单”，带上每家的采购次数</td><td>UNIQUE 动态数组 + COUNTIF 活公式，8 家供应商</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>2</td><td>加一列采购金额=数量×单价</td><td>采购金额活公式列</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>3</td><td>按供应商汇总采购金额，放新表“供应商金额”</td><td>SUMIFS 汇总表（采购金额是公式列，汇总照样是活的）</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+</table>
+<h3>9. 混合表格交叉汇总：行合计 + 大区×品类二维汇总 + 大区×月份矩阵</h3><p>文件：<code>09_门店月度销售.xlsx</code>（表 <code>上半年</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>加一列上半年合计=1月到6月求和</td><td>每行 SUM 活公式</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>2</td><td>按大区和品类汇总上半年合计，放新表“大区品类汇总”</td><td>大区×品类 9 行 SUMIFS 活公式</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>3</td><td>按大区汇总1月、2月、3月、4月、5月、6月，放新表“大区月度矩阵”</td><td>大区为行、6 个月为列的交叉矩阵（SUMIFS）；注意：纯行列转置（TRANSPOSE 整表）不在 v0.2 操作集里</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+</table>
+<h3>10. 防灾压力测试：错别字 / 倒装句 / 高危口语（删除确认 + 安全另存）</h3><p>文件：<code>10_工资表.xlsx</code>（表 <code>10月工资</code>）</p>
+<table><tr><th>#</th><th>输入的指令</th><th>预期结果</th><th>实测</th></tr>
+<tr><td>1</td><td>把空的都给我删咯</td><td>模型应追问：删整行全空的行，还是删某列为空的行？删除前弹窗确认</td><td><span class="ok">✔ 与标准答案一致</span>（弹窗确认：删除整行）</td></tr>
+<tr><td>2</td><td>实发工资低于8000的给我表红，顺便按不门汇总下实发工资</td><td>错别字（表红/不门）也能理解：条件格式标红 + 按部门汇总实发工资</td><td><span class="ok">✔ 与标准答案一致</span></td></tr>
+<tr><td>3</td><td>备注含“离职”的行都给我删了，弄完直接存原来那个文件</td><td>删除含“离职”的行 + 覆盖原文件：两次高危确认；覆盖前自动备份到 _backup</td><td><span class="ok">✔ 与标准答案一致</span>（弹窗确认：删除整行、覆盖原文件）</td></tr>
+</table>
+
+<h2>4. 实机测试结果</h2>
+<table>
+<tr><th>项目</th><th>结果</th></tr>
+<tr><td>10 个场景 / 28 步，逐步与人工标准答案比对算出来的结果（列值、条件格式命中的格子、拆分文件）</td><td><b>27 / 28 步一致；9 / 10 个场景全程一致</b>。不一致的一步是场景 2“中英文括号连同内容去掉”：模型只写了圆括号的正则，方括号【】等没有清掉（正则提取 / 正则清洗是模型的弱项）。提取类公式找不到时统一留空（自动包 IFERROR），这是与指令措辞无关的结构性规整。</td></tr>
+<tr><td>标准答案本身的校验</td><td>10 个场景全部用独立 Python 逐行核对通过；1,400+ 个公式与 LibreOffice 实算结果一致（含 Excel 2019 改写后的 INDEX/MATCH、MAXIFS、数组公式）</td></tr>
+<tr><td>高危操作</td><td>删除整行 / 去重 / 覆盖原文件 全部弹窗确认（实测 6 次弹窗）；覆盖前自动备份到 <code>_backup</code></td></tr>
+<tr><td>歧义追问</td><td>“把空的都给我删咯”：批量测试时模型追问“删整行全空的，还是删备注为空的？”；界面测试那次没追问、直接按“整行全空”理解，但删除前照样弹窗。追问不是 100% 稳定。</td></tr>
+<tr><td>速度（自动模式：CUDA，28 层里 21 层放显卡，其余走 CPU）</td><td>生成 16.8–17.0 tok/s，显存占用 3.5 / 4.0 GB；“我理解的是”摘要中位数 <b>1.6 秒</b>（冷启动首条约 4 秒），完整计划中位数 7.7 秒（最长 26 秒）</td></tr>
+<tr><td>速度（纯 CPU 模式，8 线程）</td><td>生成 8.5 tok/s；摘要 6–9 秒，完整计划 18–30 秒；结果与 GPU 模式一致（实测 5 步全部通过）</td></tr>
+<tr><td>引擎容错</td><td>程序被强制结束时，推理引擎随之退出、显存立即释放（Windows 作业对象）；显存不足时自动减层重试，再不行退到 Vulkan / CPU</td></tr>
+</table>
+<div class="box warn"><b>说法有讲究</b>：本模型对“一句话一件事、写清列名”的指令最稳。下面这些在测试中需要换说法才对：
+<ul>
+<li>档位/阶梯查找：口语“找不超过净销售额的最大档位”会被当成精确查找（全部查不到）。写成 <code>VLOOKUP(净销售额,提成档位!A:B,2,TRUE)</code> 就对了。</li>
+<li>新建列后紧接着按它汇总，最好分两句说（同一句里模型会把“采购金额”汇总成“单价”）。</li>
+<li>“离职的人全删了”会被理解成 部门=离职；说成“备注含‘离职’的行删了”就对了。删除前的确认弹窗会写明删除条件，看到不对点“否”即可。</li>
+<li>“括号符号去掉、里面的字保留”模型会连内容一起删；需要保留内容时，请先把要的信息提取成新列。</li>
+<li>纯行列转置（整表 TRANSPOSE）不在当前操作集里；场景 9 用“大区 × 月份”交叉矩阵实现交叉汇总。</li>
+</ul></div>
+
+<h2>5. 大表（几十万行 / 上百 MB）</h2>
+<p>以一张真实的政务名录导出表（150 MB，761,507 行 × 25 列，335 万条不重复文本；不随项目分发，可用 <code>test_cases/make_big.py</code> 生成同规模的合成表复现）在本机实测：</p>
+<table>
+<tr><th>操作</th><th>实测</th><th>说明</th></tr>
+<tr><td>在左侧选中大表</td><td>0.2–0.3 秒显示表结构</td><td>只读表头和前 200 行；行数取自文件自带的尺寸信息。以前会整表载入，界面卡死</td></tr>
+<tr><td>输入指令后按回车</td><td>首字 0.2–0.5 秒，“我理解的是”约 1–3 秒</td><td>表格分析在后台线程完成；选中表格、打字停顿时，程序已在后台把表结构预先送进模型</td></tr>
+<tr><td>小表从大表匹配（2,000 行名单 × 76 万行大表）</td><td>约 23 秒，内存不到 100 MB</td><td>大表流式扫描：只保留名单里出现过的代码；进度显示在状态栏，界面全程可操作</td></tr>
+<tr><td>界面最长卡顿</td><td>0.1 秒左右</td><td>Windows 要卡 5 秒才会判“未响应”</td></tr>
+</table>
+<div class="box"><b>推荐用法</b>：左侧选中<b>小表</b>（要补信息的名单），在指令里点名大表，例如：<br>
+<code>从单位名录_76万行里按统一社会信用代码匹配单位详细名称和单位规模，匹配不到的写未匹配</code><br>
+信用代码前后有空格、或一边是数字一边是文本时，也能匹配上。</div>
+<ul>
+<li>对大表的匹配结果<b>写成值，不写公式</b>：如果写成活公式，就得把 76 万行整表复制进结果文件，结果文件会变成上百 MB，Excel 也会很卡。计划预览里也会这样标明。</li>
+<li>大表本身<b>不能直接逐格修改</b>（例如“把大表里状态为正常的筛出来”）：要在 Python 里完整载入这 1,900 万个单元格，需要十几 GB 内存，耗时十几分钟。程序会在执行前提示，不会去尝试。这种需求请先在 Excel 里用筛选把需要的部分另存成小表，再交给 TabularEdge。</li>
+<li>阈值：2 MB 以上的文件用流式读取；参考表超过 20 MB 或 150 万个单元格，按大表方式匹配；主表超过 300 万个单元格，不做逐格修改。</li>
+</ul>
+
+<h2>6. Excel 2019 兼容说明</h2>
+<div class="box warn">本机是 Excel 2019（Home &amp; Student），没有 XLOOKUP / FILTER / UNIQUE 等动态数组函数。程序会自动识别版本并改写公式：
+<ul>
+<li>XLOOKUP 精确查找 → <code>IFERROR(INDEX(…,MATCH(…,0)),缺省值)</code>；档位（近似）查找 → <code>INDEX/MATCH + MAXIFS</code>，不要求档位表排序。</li>
+<li>不重复清单（UNIQUE）→ 经典数组公式 <code>INDEX/MATCH/COUNTIF</code>，预留 20 行，源表新增供应商会自动出现。</li>
+<li>筛选到新表（FILTER）→ 写入数值；TEXTBEFORE、REGEXEXTRACT 等无法改写的函数 → 写入计算结果，日志里会注明。</li>
+</ul>
+升级到 Microsoft 365 后，把 <code>config.json</code> 里的 <code>"excel"</code> 改成 <code>"365"</code> 即可直接写新函数。</div>
+
+<h2>7. 文件与配置</h2>
+<table>
+<tr><th>路径</th><th>说明</th></tr>
+<tr><td><code>TabularEdge.exe</code> + <code>_internal\</code></td><td>客户端程序（已内置 Python 运行时，不依赖本机 Python）</td></tr>
+<tr><td><code>engine\cuda</code> / <code>engine\vulkan</code> / <code>engine\cpu</code></td><td>llama.cpp b12119 推理引擎三套（CUDA 12.4 含运行库 / Vulkan / CPU），按顺序自动选择</td></tr>
+<tr><td><code>models\TabularEdge-7B-Q4_K_M.gguf</code></td><td>模型权重（不随发布包分发，从 Hugging Face 下载后放到这里；也可在 config.json 里写绝对路径）</td></tr>
+<tr><td><code>config.json</code></td><td><code>mode</code>：auto / cpu；<code>ngl</code>：auto 或固定层数；<code>threads</code>：CPU 线程（默认 8）；<code>excel</code>：auto / 2019 / 365；<code>port</code>：本地端口 18080</td></tr>
+<tr><td><code>%LOCALAPPDATA%\TabularEdge\logs</code></td><td>引擎日志（排障用）；<code>hard_cases.jsonl</code> 记录模型没答好的指令</td></tr>
+</table>
+
+<h2>8. 常见问题</h2>
+<ul>
+<li><b>一直显示“正在启动”</b>：看 <code>%LOCALAPPDATA%\TabularEdge\logs\llama-server-*.log</code>；或用“纯CPU模式启动.bat”。</li>
+<li><b>提示端口被占用</b>：把 <code>config.json</code> 的 <code>port</code> 改成别的数字。</li>
+<li><b>结果文件打不开 / 被占用</b>：先在 Excel 里关掉同名文件再执行。</li>
+<li><b>模型理解错了</b>：换个更具体的说法（说清列名、条件、放到哪张新表），或拆成两条指令分步做；每条结果都可以接着处理。</li>
+</ul>
+</main></body></html>

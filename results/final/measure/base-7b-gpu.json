@@ -1,0 +1,161 @@
+{
+ "sumifs": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 4.909,
+  "n": 40
+ },
+ "sumifs[SUMIF]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 3.402,
+  "n": 21
+ },
+ "sumifs[SUMIFS]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 6.574,
+  "n": 19
+ },
+ "vlookup": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 3.215,
+  "n": 30
+ },
+ "xlookup": {
+  "pair_acc": 0.05,
+  "top1": 0.0,
+  "margin": -2.856,
+  "n": 20
+ },
+ "repeat": {
+  "rep_rate": 0.1543,
+  "loop_frac": 0.0,
+  "unfinished": 0.6,
+  "n": 20,
+  "samples": [
+   {
+    "id": "repeat_10",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "7 represents Sunday. To convert this number into a day name, you can use an IF statement like this:\n=IF(WEEKDAY(B7,2)=1,\"Monday\",IF(WEEKDAY(B7,2)=2,\"Tuesday\",IF(WEEKDAY(B7,2)=3,\"Wednesday\",IF(WEEKDAY(B7,2)=4,\"Thursday\",IF(WEEKDAY(B"
+   },
+   {
+    "id": "repeat_32",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " the value of E9 and returns the corresponding grade. The AND function is used to check if the value of E9 falls within a certain range. If it does, the corresponding grade is returned. If not, the grade \"F\" is returned.\n\nNote: This formula assumes that the scores are integers. If the scores can be decimal numbers, you may need to adjust the formula accordingly.<|im_end|>"
+   },
+   {
+    "id": "repeat_13",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    C5=5, \"五月\",\n    C5=6, \"六月\",\n    C5=7, \"七月\",\n    C5=8, \"八月\",\n    C5=9, \"九月\",\n    C5=10, \"十月\",\n    C5=11, \"十一月\",\n    C5=12, \""
+   },
+   {
+    "id": "repeat_27",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "计算华东地区的销售额，可以将公式中的\"华北\"改为\"华东\"：\n\n```excel\n=SUMIFS(销售额,区域,\"华东\",月份,1)+SUMIFS(销售额,区域,\"华东\",月份,2)+SUMIFS(销售额,区域,\"华东\",月份,3)\n```\n\n这样，你就可以轻松地计算不同地区在特定时间段内的总销售额了。<|im_end|>"
+   },
+   {
+    "id": "repeat_16",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "6 is between 60 and 64 (inclusive of 60 but exclusive of 65), then assign \"D\"\n  * If B6 is between 55 and 59 (inclusive of 55 but exclusive of 60), then assign \"E\"\n  * If none of the above conditions are met, then assign \"F\"\n\nThe formula uses the"
+   },
+   {
+    "id": "repeat_17",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    E9=5, \"五月\",\n    E9=6, \"六月\",\n    E9=7, \"七月\",\n    E9=8, \"八月\",\n    E9=9, \"九月\",\n    E9=10, \"十月\",\n    E9=11, \"十一月\",\n    E9=12, \""
+   },
+   {
+    "id": "repeat_38",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " number, where Monday is 1 and Sunday is 7. By specifying the second argument as 2, we instruct the function to return the day of the week as a text string. So, if C3 contains the number 3, the formula will return \"Wednesday\". If C3 contains a number outside the range of 1 to 7, the formula will return an error.<|im_end|>"
+   },
+   {
+    "id": "repeat_11",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "计算华东地区的销售额，可以将公式中的\"华北\"改为\"华东\"：\n\n```excel\n=SUMIFS(销售额,区域,\"华东\",月份,1)+SUMIFS(销售额,区域,\"华东\",月份,2)+SUMIFS(销售额,区域,\"华东\",月份,3)\n```\n\n这样，你就可以轻松地计算不同地区在特定时间段内的总销售额了。<|im_end|>"
+   },
+   {
+    "id": "repeat_34",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "7 represents Sunday. To convert this number into a day name, you can use an IF statement like this:\n=IF(WEEKDAY(E3,2)=1,\"Monday\",IF(WEEKDAY(E3,2)=2,\"Tuesday\",IF(WEEKDAY(E3,2)=3,\"Wednesday\",IF(WEEKDAY(E3,2)=4,\"Thursday\",IF(WEEKDAY(E"
+   },
+   {
+    "id": "repeat_21",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    C2=5, \"五月\",\n    C2=6, \"六月\",\n    C2=7, \"七月\",\n    C2=8, \"八月\",\n    C2=9, \"九月\",\n    C2=10, \"十月\",\n    C2=11, \"十一月\",\n    C2=12, \""
+   },
+   {
+    "id": "repeat_9",
+    "finished": false,
+    "loop_period": 0,
+    "tail": ", \"五月\",\n    D8=6, \"六月\",\n    D8=7, \"七月\",\n    D8=8, \"八月\",\n    D8=9, \"九月\",\n    D8=10, \"十月\",\n    D8=11, \"十一月\",\n    D8=12, \"十二月\"\n)\n```\n\n这个公式"
+   },
+   {
+    "id": "repeat_15",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "`函数允许你根据多个条件对数据进行求和，这里我们使用了两个条件：一个是区域必须是“华南”，另一个是月份必须是1、2或3。\n\n如果你需要进一步简化这个公式，可以考虑使用数组公式（在Excel中）或者VBA脚本来实现更复杂的逻辑。不过对于简单的多条件求和，上述公式已经足够高效。<|im_end|>"
+   },
+   {
+    "id": "repeat_25",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    C2=5, \"五月\",\n    C2=6, \"六月\",\n    C2=7, \"七月\",\n    C2=8, \"八月\",\n    C2=9, \"九月\",\n    C2=10, \"十月\",\n    C2=11, \"十一月\",\n    C2=12, \""
+   },
+   {
+    "id": "repeat_14",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " additional argument to the SWITCH function that returns a default value when no match is found:\n=SWITCH(E8,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid Day\") \nThis formula will return \"Invalid Day\" if E8 contains a number outside the range of 1 to 7.<|im_end|>"
+   },
+   {
+    "id": "repeat_18",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " a date that corresponds to the first day of the year plus the number in cell C9 minus one. The WEEKDAY function then returns the day of the week for this date. Finally, you can use an IF statement or a lookup table to convert this number into a day name. Here is an example using an IF statement:\n=IF(WEEKDAY(DATE(2022,1"
+   },
+   {
+    "id": "repeat_5",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    B8=5, \"五月\",\n    B8=6, \"六月\",\n    B8=7, \"七月\",\n    B8=8, \"八月\",\n    B8=9, \"九月\",\n    B8=10, \"十月\",\n    B8=11, \"十一月\",\n    B8=12, \""
+   },
+   {
+    "id": "repeat_1",
+    "finished": false,
+    "loop_period": 0,
+    "tail": ", \"五月\",\n    D6=6, \"六月\",\n    D6=7, \"七月\",\n    D6=8, \"八月\",\n    D6=9, \"九月\",\n    D6=10, \"十月\",\n    D6=11, \"十一月\",\n    D6=12, \"十二月\"\n)\n```\n\n这个公式"
+   },
+   {
+    "id": "repeat_28",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " as values. The VLOOKUP function searches for the value in cell E2 in the first column of the lookup table and returns the corresponding value from the second column. The FALSE argument specifies that an exact match should be returned. If no match is found, the formula will return #N/A. To handle this case, you can add an additional IF statement to return \"F\" if the value"
+   },
+   {
+    "id": "repeat_31",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "计算华东地区的销售额，可以将公式中的\"华北\"改为\"华东\"：\n\n```excel\n=SUMIFS(销售额,区域,\"华东\",月份,1)+SUMIFS(销售额,区域,\"华东\",月份,2)+SUMIFS(销售额,区域,\"华东\",月份,3)\n```\n\n这样，你就可以轻松地计算不同地区在特定时间段内的总销售额了。<|im_end|>"
+   },
+   {
+    "id": "repeat_30",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " additional argument to the SWITCH function that returns a default value when no match is found:\n=SWITCH(E8,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid Day\") \nThis formula will return \"Invalid Day\" if E8 contains a number outside the range of 1 to 7.<|im_end|>"
+   }
+  ]
+ },
+ "ppl": 15.7824
+}

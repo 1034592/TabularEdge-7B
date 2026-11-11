@@ -1,0 +1,57 @@
+{
+ "n": 304,
+ "n_scored": 285,
+ "exec_eq_scored": 0.825,
+ "amb_ask_only_items": 19,
+ "amb_intercept_ask_or_confirm": 0.822,
+ "risky_ops_total": 75,
+ "by_cat": {
+  "abbr": {
+   "n": 46,
+   "exec_eq": 0.522,
+   "ask": 0.022
+  },
+  "amb": {
+   "n": 45,
+   "exec_eq": 1.0,
+   "ask": 0.733
+  },
+  "complex": {
+   "n": 54,
+   "exec_eq": 0.778,
+   "ask": 0.0
+  },
+  "en": {
+   "n": 33,
+   "exec_eq": 0.939,
+   "ask": 0.0
+  },
+  "newop": {
+   "n": 38,
+   "exec_eq": 0.816,
+   "ask": 0.0
+  },
+  "oral": {
+   "n": 39,
+   "exec_eq": 0.923,
+   "ask": 0.026
+  },
+  "risky": {
+   "n": 18,
+   "exec_eq": 0.944,
+   "ask": 0.0
+  },
+  "typo": {
+   "n": 31,
+   "exec_eq": 0.903,
+   "ask": 0.032
+  }
+ },
+ "exec_eq": 0.773,
+ "exec_eq_clear": 0.807,
+ "valid": 0.967,
+ "amb_recall": 0.733,
+ "n_amb": 45,
+ "amb_fp": 0.012,
+ "sec_avg": 1.15
+}

@@ -1,0 +1,6 @@
+{
+ "n_rows": 171,
+ "n_tokens": 45938,
+ "ppl": 1.1243,
+ "model": "models/out/tabularedge-7b-final-v3/hf"
+}

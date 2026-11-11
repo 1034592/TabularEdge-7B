@@ -1,0 +1,221 @@
+{
+ "sumifs": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 9.645,
+  "n": 40
+ },
+ "sumifs[SUMIF]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 8.584,
+  "n": 21
+ },
+ "sumifs[SUMIFS]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 10.817,
+  "n": 19
+ },
+ "vlookup": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 8.423,
+  "n": 30
+ },
+ "xlookup": {
+  "pair_acc": 1.0,
+  "top1": 0.9,
+  "margin": 5.153,
+  "n": 20
+ },
+ "filter": {
+  "pair_acc": 1.0,
+  "top1": 0.45,
+  "margin": 8.206,
+  "n": 20
+ },
+ "unique": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 10.762,
+  "n": 20
+ },
+ "textjoin": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 15.256,
+  "n": 20
+ },
+ "xmatch": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 6.228,
+  "n": 20
+ },
+ "textbefore": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.675,
+  "n": 20
+ },
+ "textsplit": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 10.659,
+  "n": 20
+ },
+ "vstack": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 1.675,
+  "n": 20
+ },
+ "sortby": {
+  "pair_acc": 1.0,
+  "top1": 0.5,
+  "margin": 8.019,
+  "n": 20
+ },
+ "ifs": {
+  "pair_acc": 0.95,
+  "top1": 0.95,
+  "margin": 2.85,
+  "n": 20
+ },
+ "regex": {
+  "pair_acc": 0.5,
+  "top1": 0.0,
+  "margin": 0.662,
+  "n": 20
+ },
+ "repeat": {
+  "rep_rate": 0.2209,
+  "loop_frac": 0.0,
+  "unfinished": 0.0,
+  "n": 20,
+  "samples": [
+   {
+    "id": "repeat_10",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid day\")<|im_end|>"
+   },
+   {
+    "id": "repeat_32",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "AND(E9<95,E9>=80),\"B\",IF(AND(E9<80,E9>=75),\"C\",IF(AND(E9<75,E9>=60),\"D\",IF(AND(E9<60,E9>=55),\"E\",\"F\"))))<|im_end|>"
+   },
+   {
+    "id": "repeat_13",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "5=3,\"三月\",C5=4,\"四月\",C5=5,\"五月\",C5=6,\"六月\",C5=7,\"七月\",C5=8,\"八月\",C5=9,\"九月\",C5=10,\"十月\",C5=11,\"十一月\",C5=12,\"十二月\")<|im_end|>"
+   },
+   {
+    "id": "repeat_27",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "(销售额,区域,\"华北\",月份,7)+SUMIFS(销售额,区域,\"华北\",月份,8)+SUMIFS(销售额,区域,\"华北\",月份,9)+SUMIFS(销售额,区域,\"华北\",月份,10)+SUMIFS(销售额,区域,\"华北\",月份,11)+SUMIFS(销售额,区域,\"华北\",月份,12)<|im_end|>"
+   },
+   {
+    "id": "repeat_16",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "AND(B6<75,B6>=70),\"B\",IF(AND(B6<70,B6>=65),\"C\",IF(AND(B6<65,B6>=60),\"D\",IF(AND(B6<60,B6>=55),\"E\",\"F\"))))<|im_end|>"
+   },
+   {
+    "id": "repeat_17",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "9=3,\"三月\",E9=4,\"四月\",E9=5,\"五月\",E9=6,\"六月\",E9=7,\"七月\",E9=8,\"八月\",E9=9,\"九月\",E9=10,\"十月\",E9=11,\"十一月\",E9=12,\"十二月\")<|im_end|>"
+   },
+   {
+    "id": "repeat_38",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid\")<|im_end|>"
+   },
+   {
+    "id": "repeat_11",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "(销售额,区域,\"华北\",月份,7)+SUMIFS(销售额,区域,\"华北\",月份,8)+SUMIFS(销售额,区域,\"华北\",月份,9)+SUMIFS(销售额,区域,\"华北\",月份,10)+SUMIFS(销售额,区域,\"华北\",月份,11)+SUMIFS(销售额,区域,\"华北\",月份,12)<|im_end|>"
+   },
+   {
+    "id": "repeat_34",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid\")<|im_end|>"
+   },
+   {
+    "id": "repeat_21",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "2=3,\"三月\",C2=4,\"四月\",C2=5,\"五月\",C2=6,\"六月\",C2=7,\"七月\",C2=8,\"八月\",C2=9,\"九月\",C2=10,\"十月\",C2=11,\"十一月\",C2=12,\"十二月\")<|im_end|>"
+   },
+   {
+    "id": "repeat_9",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "8=3,\"三月\",D8=4,\"四月\",D8=5,\"五月\",D8=6,\"六月\",D8=7,\"七月\",D8=8,\"八月\",D8=9,\"九月\",D8=10,\"十月\",D8=11,\"十一月\",D8=12,\"十二月\")<|im_end|>"
+   },
+   {
+    "id": "repeat_15",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "(销售额,区域,\"华南\",月份,7)+SUMIFS(销售额,区域,\"华南\",月份,8)+SUMIFS(销售额,区域,\"华南\",月份,9)+SUMIFS(销售额,区域,\"华南\",月份,10)+SUMIFS(销售额,区域,\"华南\",月份,11)+SUMIFS(销售额,区域,\"华南\",月份,12)<|im_end|>"
+   },
+   {
+    "id": "repeat_25",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "2=3,\"三月\",C2=4,\"四月\",C2=5,\"五月\",C2=6,\"六月\",C2=7,\"七月\",C2=8,\"八月\",C2=9,\"九月\",C2=10,\"十月\",C2=11,\"十一月\",C2=12,\"十二月\")<|im_end|>"
+   },
+   {
+    "id": "repeat_14",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid\")<|im_end|>"
+   },
+   {
+    "id": "repeat_18",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid\")<|im_end|>"
+   },
+   {
+    "id": "repeat_5",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "8=3,\"三月\",B8=4,\"四月\",B8=5,\"五月\",B8=6,\"六月\",B8=7,\"七月\",B8=8,\"八月\",B8=9,\"九月\",B8=10,\"十月\",B8=11,\"十一月\",B8=12,\"十二月\")<|im_end|>"
+   },
+   {
+    "id": "repeat_1",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "6=3,\"三月\",D6=4,\"四月\",D6=5,\"五月\",D6=6,\"六月\",D6=7,\"七月\",D6=8,\"八月\",D6=9,\"九月\",D6=10,\"十月\",D6=11,\"十一月\",D6=12,\"十二月\")<|im_end|>"
+   },
+   {
+    "id": "repeat_28",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "AND(E2<80,E2>=75),\"B\",IF(AND(E2<75,E2>=55),\"C\",IF(AND(E2<55,E2>=50),\"D\",IF(AND(E2<50,E2>=45),\"E\",\"F\"))))<|im_end|>"
+   },
+   {
+    "id": "repeat_31",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "(销售额,区域,\"华北\",月份,7)+SUMIFS(销售额,区域,\"华北\",月份,8)+SUMIFS(销售额,区域,\"华北\",月份,9)+SUMIFS(销售额,区域,\"华北\",月份,10)+SUMIFS(销售额,区域,\"华北\",月份,11)+SUMIFS(销售额,区域,\"华北\",月份,12)<|im_end|>"
+   },
+   {
+    "id": "repeat_30",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\",\"Invalid\")<|im_end|>"
+   }
+  ]
+ },
+ "ppl": 15.4029
+}

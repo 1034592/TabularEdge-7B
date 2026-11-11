@@ -1,0 +1,13 @@
+{
+ "train": {
+  "ok": 5000,
+  "exec_fail": 0,
+  "cf_pairs": 1608,
+  "cf_no_effect": 119,
+  "ambiguous": 1470,
+  "amb_pairs": 982,
+  "noised": 2260,
+  "rows": 7590,
+  "fails": []
+ }
+}

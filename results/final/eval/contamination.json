@@ -1,0 +1,73 @@
+{
+ "human_v1": {
+  "n": 34,
+  "flagged": [
+   {
+    "id": "h29",
+    "text": "delete the empty ones",
+    "match": "exact"
+   }
+  ]
+ },
+ "human_v2": {
+  "n": 304,
+  "flagged": [
+   {
+    "id": "v2_037",
+    "text": "delete rows where 备注 is empty",
+    "match": "0.92",
+    "train": "delete rows where Qty is empty"
+   },
+   {
+    "id": "v2_038",
+    "text": "带括号的备注都不要了",
+    "match": "0.95",
+    "train": "带括号的备注不要了"
+   },
+   {
+    "id": "v2_039",
+    "text": "把空的都删了",
+    "match": "0.91",
+    "train": "把空的删了"
+   },
+   {
+    "id": "v2_073",
+    "text": "把金额改成千分位取整",
+    "match": "exact"
+   },
+   {
+    "id": "v2_089",
+    "text": "每个区域单独一个文件",
+    "match": "0.95",
+    "train": "每个区域单独存一个文件"
+   },
+   {
+    "id": "v2_106",
+    "text": "make negative qty red",
+    "match": "exact"
+   },
+   {
+    "id": "v2_169",
+    "text": "金额大于10000的标红",
+    "match": "0.92",
+    "train": "金额大于10000的标黄"
+   },
+   {
+    "id": "v2_170",
+    "text": "按金额降序排",
+    "match": "0.92",
+    "train": "按金额降序排序"
+   },
+   {
+    "id": "v2_174",
+    "text": "sort by amount descending",
+    "match": "exact"
+   },
+   {
+    "id": "v2_230",
+    "text": "把空的删了",
+    "match": "exact"
+   }
+  ]
+ }
+}

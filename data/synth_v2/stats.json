@@ -1,0 +1,38 @@
+{
+ "train": {
+  "ok": 24000,
+  "exec_fail": 0,
+  "cf_pairs": 8392,
+  "cf_no_effect": 495,
+  "ambiguous": 4799,
+  "amb_pairs": 3134,
+  "noised": 7479,
+  "rows": 35526,
+  "fails": []
+ },
+ "test_v2_id": {
+  "ok": 400,
+  "exec_fail": 0,
+  "cf_pairs": 135,
+  "cf_no_effect": 9,
+  "ambiguous": 88,
+  "amb_pairs": 58,
+  "noised": 0,
+  "rows": 536,
+  "fails": []
+ },
+ "test_v2_ood": {
+  "ok": 400,
+  "exec_fail": 0,
+  "cf_pairs": 144,
+  "cf_no_effect": 6,
+  "ambiguous": 77,
+  "amb_pairs": 54,
+  "noised": 0,
+  "rows": 598,
+  "fails": []
+ },
+ "test_v2_noisy": {
+  "rows": 598
+ }
+}

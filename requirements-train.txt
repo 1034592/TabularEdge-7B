@@ -1,0 +1,9 @@
+# Training / model surgery (GPU host). Not needed to run the engine or the tests.
+# CUDA wheel: pip install torch --index-url https://download.pytorch.org/whl/cu124
+torch>=2.4
+transformers>=4.45
+accelerate>=0.34
+peft>=0.12
+bitsandbytes>=0.43
+safetensors
+numpy

@@ -1,0 +1,30 @@
+{
+ "test_id": {
+  "n": 137,
+  "json_ok": 1.0,
+  "valid": 1.0,
+  "exact": 0.942,
+  "exec_eq": 1.0,
+  "amb_recall": 0.143,
+  "n_amb": 7,
+  "amb_fp": 0.015,
+  "cf_both": 1.0,
+  "n_pairs": 34,
+  "sec_avg": 0.95,
+  "tok_s": 153.0
+ },
+ "test_ood": {
+  "n": 150,
+  "json_ok": 1.0,
+  "valid": 1.0,
+  "exact": 0.967,
+  "exec_eq": 0.967,
+  "amb_recall": 0.4,
+  "n_amb": 10,
+  "amb_fp": 0.007,
+  "cf_both": 0.947,
+  "n_pairs": 38,
+  "sec_avg": 0.93,
+  "tok_s": 152.8
+ }
+}

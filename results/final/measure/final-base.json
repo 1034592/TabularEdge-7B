@@ -1,0 +1,221 @@
+{
+ "sumifs": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 4.891,
+  "n": 40
+ },
+ "sumifs[SUMIF]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 3.393,
+  "n": 21
+ },
+ "sumifs[SUMIFS]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 6.547,
+  "n": 19
+ },
+ "vlookup": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 3.202,
+  "n": 30
+ },
+ "xlookup": {
+  "pair_acc": 1.0,
+  "top1": 0.85,
+  "margin": 5.628,
+  "n": 20
+ },
+ "filter": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 6.128,
+  "n": 20
+ },
+ "unique": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 4.466,
+  "n": 20
+ },
+ "textjoin": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 4.856,
+  "n": 20
+ },
+ "xmatch": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 8.172,
+  "n": 20
+ },
+ "textbefore": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 6.972,
+  "n": 20
+ },
+ "textsplit": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 2.297,
+  "n": 20
+ },
+ "vstack": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 2.094,
+  "n": 20
+ },
+ "sortby": {
+  "pair_acc": 1.0,
+  "top1": 0.5,
+  "margin": 6.725,
+  "n": 20
+ },
+ "ifs": {
+  "pair_acc": 0.0,
+  "top1": 0.0,
+  "margin": -4.131,
+  "n": 20
+ },
+ "regex": {
+  "pair_acc": 1.0,
+  "top1": 0.45,
+  "margin": 2.35,
+  "n": 20
+ },
+ "repeat": {
+  "rep_rate": 0.1501,
+  "loop_frac": 0.0,
+  "unfinished": 0.5,
+  "n": 20,
+  "samples": [
+   {
+    "id": "repeat_10",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " handling argument:\n=IFERROR(SWITCH(B7,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\"),\"Invalid input\") \nThis formula will return \"Invalid input\" if B7 contains a number outside the range of 1 to 7. You can customize the error message to suit your needs.<|im_end|>"
+   },
+   {
+    "id": "repeat_32",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " to 60, then assign \"D\"\n  * If E9 is less than 60 but greater than or equal to 55, then assign \"E\"\n  * If none of the above conditions are met, then assign \"F\"\n\nThe formula uses the AND function to check if E9 falls within a certain range of values. For example, the second condition checks if E"
+   },
+   {
+    "id": "repeat_13",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    C5=5, \"五月\",\n    C5=6, \"六月\",\n    C5=7, \"七月\",\n    C5=8, \"八月\",\n    C5=9, \"九月\",\n    C5=10, \"十月\",\n    C5=11, \"十一月\",\n    C5=12, \""
+   },
+   {
+    "id": "repeat_27",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "数据进行求和，这里我们使用了两个条件：一个是区域（\"华北\"），另一个是月份（1、2、3）。通过将这些条件相加，我们可以得到华北地区在这三个月的总销售额。\n\n如果你需要计算其他地区的销售额，只需更改区域名称即可。例如，要计算华东地区的销售额，可以将公式中的\"华北\"改为\"华东\"。<|im_end|>"
+   },
+   {
+    "id": "repeat_16",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "6 is between 60 and 64 (inclusive of 60 but exclusive of 65), then assign \"D\"\n  * If B6 is between 55 and 59 (inclusive of 55 but exclusive of 60), then assign \"E\"\n  * If none of the above conditions are met, then assign \"F\"\n\nNote: The AND"
+   },
+   {
+    "id": "repeat_17",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    E9=5, \"五月\",\n    E9=6, \"六月\",\n    E9=7, \"七月\",\n    E9=8, \"八月\",\n    E9=9, \"九月\",\n    E9=10, \"十月\",\n    E9=11, \"十一月\",\n    E9=12, \""
+   },
+   {
+    "id": "repeat_38",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " in cell C3 to January 1, 1900, which is a Monday, and then format the resulting date as the full name of the day of the week. For example, if C3 contains the number 3, the formula will return \"Wednesday\". If C3 contains a number outside the range of 1 to 7, the formula will return an error.<|im_end|>"
+   },
+   {
+    "id": "repeat_11",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "数据进行求和，这里我们使用了两个条件：一个是区域（\"华北\"），另一个是月份（1、2、3）。通过将这些条件相加，我们可以得到华北地区在这三个月的总销售额。\n\n如果你需要计算其他地区的销售额，只需更改区域名称即可。例如，要计算华东地区的销售额，可以将公式中的\"华北\"改为\"华东\"。<|im_end|>"
+   },
+   {
+    "id": "repeat_34",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " handling argument:\n=IFERROR(SWITCH(E3,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\"),\"Invalid input\") \nThis formula will return \"Invalid input\" if E3 contains a number outside the range of 1 to 7. You can customize the error message to suit your needs.<|im_end|>"
+   },
+   {
+    "id": "repeat_21",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    C2=5, \"五月\",\n    C2=6, \"六月\",\n    C2=7, \"七月\",\n    C2=8, \"八月\",\n    C2=9, \"九月\",\n    C2=10, \"十月\",\n    C2=11, \"十一月\",\n    C2=12, \""
+   },
+   {
+    "id": "repeat_9",
+    "finished": false,
+    "loop_period": 0,
+    "tail": ", \"五月\",\n    D8=6, \"六月\",\n    D8=7, \"七月\",\n    D8=8, \"八月\",\n    D8=9, \"九月\",\n    D8=10, \"十月\",\n    D8=11, \"十一月\",\n    D8=12, \"十二月\"\n)\n```\n\n这个公式"
+   },
+   {
+    "id": "repeat_15",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "2月和3月的总销售额。`SUMIFS`函数允许你根据多个条件对数据进行求和，这里我们使用了两个条件：一个是区域（\"华南\"），另一个是月份（1、2、3）。通过将这些条件相加，我们可以得到华南地区在这三个月份的总销售额。\n\n如果你需要进一步的帮助或有其他问题，请随时告诉我！<|im_end|>"
+   },
+   {
+    "id": "repeat_25",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    C2=5, \"五月\",\n    C2=6, \"六月\",\n    C2=7, \"七月\",\n    C2=8, \"八月\",\n    C2=9, \"九月\",\n    C2=10, \"十月\",\n    C2=11, \"十一月\",\n    C2=12, \""
+   },
+   {
+    "id": "repeat_14",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " handling argument:\n=IFERROR(SWITCH(E8,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\"),\"Invalid input\") \nThis formula will return \"Invalid input\" if E8 contains a number outside the range of 1 to 7. You can customize the error message to suit your needs.<|im_end|>"
+   },
+   {
+    "id": "repeat_18",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " a date with year 1, month 1, and day equal to the value in cell C9, and then format it as the full name of the day of the week. For example, if C9 contains the number 3, the formula will return \"Wednesday\". If C9 contains a number outside the range of 1 to 7, the formula will return an error.<|im_end|>"
+   },
+   {
+    "id": "repeat_5",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "四月\",\n    B8=5, \"五月\",\n    B8=6, \"六月\",\n    B8=7, \"七月\",\n    B8=8, \"八月\",\n    B8=9, \"九月\",\n    B8=10, \"十月\",\n    B8=11, \"十一月\",\n    B8=12, \""
+   },
+   {
+    "id": "repeat_1",
+    "finished": false,
+    "loop_period": 0,
+    "tail": ", \"五月\",\n    D6=6, \"六月\",\n    D6=7, \"七月\",\n    D6=8, \"八月\",\n    D6=9, \"九月\",\n    D6=10, \"十月\",\n    D6=11, \"十一月\",\n    D6=12, \"十二月\"\n)\n```\n\n这个公式"
+   },
+   {
+    "id": "repeat_28",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " ensures that an exact match is returned. If no match is found, the formula will return #N/A. To handle this case, you can add an additional IF statement to return \"F\" if the value in E2 is less than 45:\n\n=IF(E2<45,\"F\",VLOOKUP(E2,{80:\"A\";75:\"B\";55"
+   },
+   {
+    "id": "repeat_31",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "数据进行求和，这里我们使用了两个条件：一个是区域（\"华北\"），另一个是月份（1、2、3）。通过将这些条件相加，我们可以得到华北地区在这三个月的总销售额。\n\n如果你需要计算其他地区的销售额，只需更改区域名称即可。例如，要计算华东地区的销售额，可以将公式中的\"华北\"改为\"华东\"。<|im_end|>"
+   },
+   {
+    "id": "repeat_30",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " handling argument:\n=IFERROR(SWITCH(E8,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Sunday\"),\"Invalid input\") \nThis formula will return \"Invalid input\" if E8 contains a number outside the range of 1 to 7. You can customize the error message to suit your needs.<|im_end|>"
+   }
+  ]
+ },
+ "ppl": 15.8233
+}

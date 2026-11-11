@@ -1,0 +1,10 @@
+PASS case1 提成/部门/档位 逐行核对 42 行, 错 0
+PASS case2 剩 106/106 行, 订单号提取正确=True
+PASS case3 16 组奖金汇总一致
+PASS case4 拆出 5 个文件, 共 160 行 (去重后应 160)
+PASS case5 前10% 标记 6 行 / 60
+PASS case6 9 个周次汇总一致
+PASS case7 保留 70 条最新 / 归档 49 条
+PASS case8 供应商清单（2019 版为 8 家 + 20 行预留公式）
+PASS case9 矩阵总和=行合计总和
+PASS case10 剩 29 行, 覆盖前备份 1 个

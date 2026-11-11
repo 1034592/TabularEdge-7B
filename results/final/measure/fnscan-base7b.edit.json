@@ -1,0 +1,63 @@
+{
+ "filter": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 6.041,
+  "n": 20
+ },
+ "unique": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 8.384,
+  "n": 20
+ },
+ "textjoin": {
+  "pair_acc": 0.75,
+  "top1": 0.75,
+  "margin": 0.547,
+  "n": 20
+ },
+ "xmatch": {
+  "pair_acc": 0.0,
+  "top1": 0.0,
+  "margin": -5.25,
+  "n": 20
+ },
+ "textbefore": {
+  "pair_acc": 0.0,
+  "top1": 0.0,
+  "margin": -3.425,
+  "n": 20
+ },
+ "textsplit": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.131,
+  "n": 20
+ },
+ "vstack": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 2.944,
+  "n": 20
+ },
+ "sortby": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.987,
+  "n": 20
+ },
+ "ifs": {
+  "pair_acc": 0.0,
+  "top1": 0.0,
+  "margin": -5.009,
+  "n": 20
+ },
+ "regex": {
+  "pair_acc": 0.65,
+  "top1": 0.65,
+  "margin": 0.147,
+  "n": 20
+ },
+ "ppl": 15.7824
+}

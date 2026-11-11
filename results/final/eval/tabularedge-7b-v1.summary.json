@@ -1,0 +1,80 @@
+{
+ "test_v2_id": {
+  "n": 536,
+  "json_ok": 0.955,
+  "valid": 0.683,
+  "exact": 0.381,
+  "exec_eq": 0.424,
+  "amb_recall": 0.034,
+  "n_amb": 88,
+  "amb_fp": 0.004,
+  "cf_both": 0.329,
+  "n_pairs": 170,
+  "sec_avg": 4.36,
+  "tok_s": 42.0,
+  "amb_recall_by_kind": {
+   "A1": 0.111,
+   "A2": 0.0,
+   "A3": 0.0,
+   "A4": 0.0,
+   "A5": 0.0
+  },
+  "exec_eq_risky": 0.482
+ },
+ "test_v2_ood": {
+  "n": 598,
+  "json_ok": 0.95,
+  "valid": 0.686,
+  "exact": 0.403,
+  "exec_eq": 0.467,
+  "amb_recall": 0.026,
+  "n_amb": 77,
+  "amb_fp": 0.01,
+  "cf_both": 0.384,
+  "n_pairs": 198,
+  "sec_avg": 4.27,
+  "tok_s": 30.6,
+  "amb_recall_by_kind": {
+   "A1": 0.111,
+   "A2": 0.0,
+   "A3": 0.0,
+   "A4": 0.0,
+   "A5": 0.0
+  },
+  "exec_eq_risky": 0.514
+ },
+ "test_v2_noisy": {
+  "n": 598,
+  "json_ok": 0.96,
+  "valid": 0.684,
+  "exact": 0.391,
+  "exec_eq": 0.44,
+  "amb_recall": 0.026,
+  "n_amb": 77,
+  "amb_fp": 0.012,
+  "cf_both": 0.343,
+  "n_pairs": 198,
+  "sec_avg": 4.35,
+  "tok_s": 30.3,
+  "amb_recall_by_kind": {
+   "A1": 0.111,
+   "A2": 0.0,
+   "A3": 0.0,
+   "A4": 0.0,
+   "A5": 0.0
+  },
+  "exec_eq_by_noise": {
+   "en_abbr": 0.444,
+   "filler": 0.443,
+   "homophone": 0.373,
+   "initials": 0.5,
+   "invert": 0.667,
+   "keyboard": 0.497,
+   "lower": 0.385,
+   "mix": 0.303,
+   "punct": 0.358
+  },
+  "exec_eq_noised": 0.421,
+  "exec_eq_risky": 0.466
+ }
+}

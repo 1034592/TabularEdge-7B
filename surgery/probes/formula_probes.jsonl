@@ -1,0 +1,10 @@
+{"id": "sumifs_order", "kind": "trace", "prompt": "In Excel, to add up column C only where column B equals \"East\", using SUMIFS, the first argument is the range to sum, so the formula is =SUMIFS(", "target": "C", "subject": "SUMIFS", "note": "SUMIF 的 sum_range 在最后、SUMIFS 在最前，模型常混淆"}
+{"id": "sumif_order", "kind": "trace", "prompt": "In Excel, to add up column C only where column B equals \"East\", using SUMIF, the formula is =SUMIF(", "target": "B", "subject": "SUMIF"}
+{"id": "xlookup_default", "kind": "trace", "prompt": "Excel function that looks up a value, returns a match from another column, and returns a custom message if nothing is found, without needing IFERROR: =", "target": "XLOOKUP", "subject": "returns a custom message if nothing is found"}
+{"id": "zh_xlookup", "kind": "trace", "prompt": "在 Excel 中按员工编号查找姓名，找不到时显示“无此人”，不用 IFERROR 嵌套，公式写作 =", "target": "XLOOKUP", "subject": "找不到时显示“无此人”"}
+{"id": "textsplit_vs_legacy", "kind": "trace", "prompt": "In Excel 365, to split the text in A2 into columns by comma with a single function, use =", "target": "TEXTSPLIT", "subject": "Excel 365"}
+{"id": "vlookup_colidx", "kind": "trace", "prompt": "Table A:D, lookup key in column A, want the value from column D. =VLOOKUP(F2,A:D,", "target": "4", "subject": "column D"}
+{"id": "rep_nested_if", "kind": "repeat", "prompt": "Write one Excel formula that converts score in A2 to grades A (>=90), B (>=80), C (>=70), D (>=60), else F:\n=IF(A2>=90,\"A\",IF("}
+{"id": "rep_ifs_long", "kind": "repeat", "prompt": "Excel formula mapping month number in A2 (1-12) to Chinese month names using IFS:\n=IFS(A2=1,\"一月\",A2=2,\"二月\","}
+{"id": "rep_lambda", "kind": "repeat", "prompt": "Define a recursive LAMBDA in Excel that removes all digits from text:\n=LAMBDA(t, IF("}
+{"id": "rep_sumifs_many", "kind": "repeat", "prompt": "=SUMIFS(销售额,部门,\"华东\",月份,1)+SUMIFS(销售额,部门,\"华东\",月份,2)+SUMIFS("}

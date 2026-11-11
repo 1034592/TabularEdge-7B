@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+outputs/
+workspace/
+models/
+*.gguf
+*.safetensors
+*.bin
+# generated sample workbooks (python test_cases/make_cases.py / make_big.py)
+test_cases/*.xlsx
+test_cases/_original/
+test_cases/big/

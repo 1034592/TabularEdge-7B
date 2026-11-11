@@ -1,0 +1,13 @@
+{
+  "model": "models\\TabularEdge-7B-Q4_K_M.gguf",
+  "mode": "auto",
+  "ngl": "auto",
+  "ctx": 4096,
+  "threads": 8,
+  "port": 18080,
+  "n_layers": 28,
+  "vram_reserve_mb": 900,
+  "excel": "auto",
+  "lang": "zh",
+  "workdir": ""
+}

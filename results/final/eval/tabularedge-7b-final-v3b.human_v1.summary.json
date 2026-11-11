@@ -1,0 +1,16 @@
+{
+ "n": 34,
+ "n_scored": 34,
+ "exec_eq_scored": 0.912,
+ "amb_ask_only_items": 0,
+ "amb_intercept_ask_or_confirm": 1.0,
+ "risky_ops_total": 8,
+ "by_cat": {},
+ "exec_eq": 0.912,
+ "exec_eq_clear": 0.893,
+ "valid": 1.0,
+ "amb_recall": 1.0,
+ "n_amb": 6,
+ "amb_fp": 0.0,
+ "sec_avg": 0.67
+}

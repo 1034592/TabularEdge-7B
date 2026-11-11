@@ -1,0 +1,6 @@
+{
+ "n_rows": 171,
+ "n_tokens": 45938,
+ "ppl": 1.237,
+ "model": "models/out/final_base_cut3_xmatch_L7/hf"
+}

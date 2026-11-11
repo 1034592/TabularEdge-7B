@@ -1,0 +1,33 @@
+{
+ "sumifs": {
+  "pair_acc": 0.975,
+  "top1": 0.0,
+  "margin": 4.64,
+  "n": 40
+ },
+ "sumifs[SUMIF]": {
+  "pair_acc": 0.947,
+  "top1": 0.0,
+  "margin": 3.03,
+  "n": 19
+ },
+ "sumifs[SUMIFS]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 6.096,
+  "n": 21
+ },
+ "vlookup": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 3.094,
+  "n": 30
+ },
+ "xlookup": {
+  "pair_acc": 0.05,
+  "top1": 0.0,
+  "margin": -2.647,
+  "n": 20
+ },
+ "ppl": 15.7824
+}

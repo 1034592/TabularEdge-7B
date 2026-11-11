@@ -1,0 +1,8 @@
+{"text": "The quarterly report shows revenue grew 12% year over year, driven mainly by the eastern region."}
+{"text": "def merge(a, b):\n    return sorted(a + b)\n"}
+{"text": "请在下周一之前把各部门的预算表发给财务部，逾期将无法纳入本季度汇总。"}
+{"text": "=INDEX(B2:B100, MATCH(MAX(C2:C100), C2:C100, 0))"}
+{"text": "To freeze the top row in Excel, go to View > Freeze Panes > Freeze Top Row."}
+{"text": "SELECT department, SUM(amount) FROM ledger GROUP BY department;"}
+{"text": "数据透视表可以按行标签对部门分组，并对金额字段求和。"}
+{"text": "The FILTER function returns an array, which spills into neighboring cells automatically."}

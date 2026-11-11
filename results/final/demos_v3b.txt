@@ -1,0 +1,469 @@
+工作区: outputs/demo_ws_final_v3b_v1 （示例文件 ledger.xlsx / sales.xlsx 已生成）
+
+====================================================================================================
+指令: 把带括号的备注删了，金额负数的标红，按部门汇总新表
+  [ 0.20s] 我理解的是：删除备注中的括号内容；金额负数标红；按部门汇总金额到新表
+  [ 2.06s] 完整计划（4 步，尝试 1 次）:
+     s1 regex_replace      {"col": "备注", "pattern": "[\\(（][^\\)）]*[\\)）]", "repl": ""}
+     s2 conditional_format {"where": {"col": "金额", "cmp": "<", "value": 0}, "apply_to": "cell", "style": {"font_color": "FF0000"}}
+     s3 group_aggregate    {"by": ["部门"], "aggs": [{"col": "金额", "fn": "sum"}], "output_sheet": "按部门汇总", "mode": "formula"}
+     s4 save               {"path": "ledger_处理后.xlsx"}
+  ❓ “删掉带括号的备注”是指删除备注里括号及括号中的文字，还是删除备注含括号的整行？
+     → 按当前计划执行
+  [写盘确认] save {"path": "ledger_处理后.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 regex_replace: 4 cells changed
+     s2 conditional_format: live rule on C2:C9: =AND(ISNUMBER($C2),$C2<0)
+     s3 group_aggregate: 4 groups -> sheet '按部门汇总' (formula)
+     s4 save: saved ledger_处理后.xlsx
+    ── ledger_处理后.xlsx / 流水
+      日期 | 部门 | 金额 | 备注
+      2026-10-01 | 销售部 | 12000 | 客户A
+      2026-10-02 | 财务部 | -300 | 退款
+      2026-10-03 | 销售部 | 8000 | 客户B
+      2026-10-05 | 研发部 | -50.5 | 报销
+      2026-10-06 | 财务部 | 1000 | 
+      2026-10-08 | 研发部 | 23000 | 服务器采购
+      2026-10-09 | 市场部 | -1200 | 活动退款
+      2026-10-09 | 市场部 | 4500 | 
+       |  |  | 
+      [条件格式] C2:C9: =AND(ISNUMBER($C2),$C2<0)
+    ── ledger_处理后.xlsx / 部门预算
+      部门 | 预算 | 负责人
+      销售部 | 30000 | 张伟
+      财务部 | 5000 | 王芳
+      研发部 | 50000 | 李娜
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    ── ledger_处理后.xlsx / 按部门汇总
+      部门 | sum_金额
+      市场部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A2)
+      研发部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A3)
+      财务部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A4)
+      销售部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A5)
+       | 
+       | 
+       | 
+       | 
+       | 
+    file: ledger.xlsx
+    file: ledger_处理后.xlsx
+    file: sales.xlsx
+
+====================================================================================================
+指令: remove the stuff in brackets from the notes, make negative amounts red and total amount by department
+  [ 0.21s] 我理解的是：strip parentheses in 备注; negative 金额 -> red; sum 金额 by 部门 -> new sheet
+  [ 1.39s] 完整计划（4 步，尝试 1 次）:
+     s1 regex_replace      {"col": "备注", "pattern": "[\\(（][^\\)）]*[\\)）]", "repl": ""}
+     s2 conditional_format {"where": {"col": "金额", "cmp": "<", "value": 0}, "apply_to": "cell", "style": {"font_color": "FF0000"}}
+     s3 group_aggregate    {"by": ["部门"], "aggs": [{"col": "金额", "fn": "sum"}], "output_sheet": "部门 summary", "mode": "formula"}
+     s4 save               {"path": "ledger_processed.xlsx"}
+  [写盘确认] save {"path": "ledger_processed.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 regex_replace: 4 cells changed
+     s2 conditional_format: live rule on C2:C9: =AND(ISNUMBER($C2),$C2<0)
+     s3 group_aggregate: 4 groups -> sheet '部门 summary' (formula)
+     s4 save: saved ledger_processed.xlsx
+    ── ledger_processed.xlsx / 流水
+      日期 | 部门 | 金额 | 备注
+      2026-10-01 | 销售部 | 12000 | 客户A
+      2026-10-02 | 财务部 | -300 | 退款
+      2026-10-03 | 销售部 | 8000 | 客户B
+      2026-10-05 | 研发部 | -50.5 | 报销
+      2026-10-06 | 财务部 | 1000 | 
+      2026-10-08 | 研发部 | 23000 | 服务器采购
+      2026-10-09 | 市场部 | -1200 | 活动退款
+      2026-10-09 | 市场部 | 4500 | 
+       |  |  | 
+      [条件格式] C2:C9: =AND(ISNUMBER($C2),$C2<0)
+    ── ledger_processed.xlsx / 部门预算
+      部门 | 预算 | 负责人
+      销售部 | 30000 | 张伟
+      财务部 | 5000 | 王芳
+      研发部 | 50000 | 李娜
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    ── ledger_processed.xlsx / 部门 summary
+      部门 | sum_金额
+      市场部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A2)
+      研发部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A3)
+      财务部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A4)
+      销售部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A5)
+       | 
+       | 
+       | 
+       | 
+       | 
+    file: ledger.xlsx
+    file: ledger_processed.xlsx
+    file: sales.xlsx
+
+====================================================================================================
+指令: 按订单号去重，加一列销售额等于数量乘单价，然后按区域汇总销售额
+  [ 0.16s] 我理解的是：去重；新增列Sales Amount；按Region汇总Qty到新表
+  [ 1.11s] 完整计划（4 步，尝试 1 次）:
+     s1 dedupe             {"cols": ["Order ID"]}
+     s2 add_column         {"name": "Sales Amount", "formula": "=[Qty]*[Unit Price]"}
+     s3 group_aggregate    {"by": ["Region"], "aggs": [{"col": "Qty", "fn": "sum"}], "output_sheet": "按Region汇总", "mode": "formula"}
+     s4 save               {"path": "sales_处理后.xlsx"}
+  [⚠ 破坏性操作确认] dedupe {"cols": ["Order ID"]} → 自动确认（--yes）
+  [写盘确认] save {"path": "sales_处理后.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 dedupe: 1 duplicate rows removed
+     s2 add_column: column Sales Amount = =E{r}*F{r}
+     s3 group_aggregate: 4 groups -> sheet '按Region汇总' (formula)
+     s4 save: saved sales_处理后.xlsx
+    ── sales_处理后.xlsx / Orders
+      Order ID | Sales Rep | Region | Product | Qty | Unit Price | Remarks | Sales Amount
+      SO-1001 | Alice | East | Laptop | 3 | 5999 | urgent (VIP) | =E2*F2
+      SO-1002 | Bob | South | Monitor | 10 | 1299 |  | =E3*F3
+      SO-1003 | Alice | East | Mouse | 50 | 59.9 |  | =E4*F4
+      SO-1004 | Carol | North | Laptop | 1 | 6299 | demo unit (return) | =E5*F5
+      SO-1005 | Dave | West | Keyboard | 20 | 199 |  | =E6*F6
+       |  |  |  |  |  |  | 
+       |  |  |  |  |  |  | 
+       |  |  |  |  |  |  | 
+       |  |  |  |  |  |  | 
+    ── sales_处理后.xlsx / Catalog
+      Product | Category | List Price
+      Laptop | PC | 6299
+      Monitor | Display | 1399
+      Mouse | Accessory | 69
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    ── sales_处理后.xlsx / 按Region汇总
+      Region | sum_Qty
+      East | =SUMIFS('Orders'!$E:$E,'Orders'!$C:$C,$A2)
+      North | =SUMIFS('Orders'!$E:$E,'Orders'!$C:$C,$A3)
+      South | =SUMIFS('Orders'!$E:$E,'Orders'!$C:$C,$A4)
+      West | =SUMIFS('Orders'!$E:$E,'Orders'!$C:$C,$A5)
+       | 
+       | 
+       | 
+       | 
+       | 
+    file: ledger.xlsx
+    file: sales.xlsx
+    file: sales_处理后.xlsx
+
+====================================================================================================
+指令: sort by unit price high to low and split into one file per region
+  [ 0.10s] 我理解的是：sort by Unit Price desc; split files by Region
+  [ 0.69s] 完整计划（3 步，尝试 1 次）:
+     s1 sort               {"by": [{"col": "Unit Price", "desc": true}]}
+     s2 split_to_files     {"by": "Region", "path_template": "拆分_Region/{value}.xlsx"}
+     s3 save               {"path": "sales_processed.xlsx"}
+  [写盘确认] split_to_files {"by": "Region", "path_template": "拆分_Region/{value}.xlsx"} → 自动确认（--yes）
+  [写盘确认] save {"path": "sales_processed.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 sort: 6 rows sorted
+     s2 split_to_files: 4 files written
+     s3 save: saved sales_processed.xlsx
+    ── sales_processed.xlsx / Orders
+      Order ID | Sales Rep | Region | Product | Qty | Unit Price | Remarks
+      SO-1004 | Carol | North | Laptop | 1 | 6299 | demo unit (return)
+      SO-1004 | Carol | North | Laptop | 1 | 6299 | demo unit (return)
+      SO-1001 | Alice | East | Laptop | 3 | 5999 | urgent (VIP)
+      SO-1002 | Bob | South | Monitor | 10 | 1299 | 
+      SO-1005 | Dave | West | Keyboard | 20 | 199 | 
+      SO-1003 | Alice | East | Mouse | 50 | 59.9 | 
+       |  |  |  |  |  | 
+       |  |  |  |  |  | 
+       |  |  |  |  |  | 
+    ── sales_processed.xlsx / Catalog
+      Product | Category | List Price
+      Laptop | PC | 6299
+      Monitor | Display | 1399
+      Mouse | Accessory | 69
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    file: ledger.xlsx
+    file: sales.xlsx
+    file: sales_processed.xlsx
+    file: 拆分_Region/East.xlsx
+    file: 拆分_Region/North.xlsx
+    file: 拆分_Region/South.xlsx
+    file: 拆分_Region/West.xlsx
+工作区: outputs/demo_ws_final_v3b_v2 （示例文件 ledger.xlsx / sales.xlsx 已生成）
+
+====================================================================================================
+指令: 帮我把被注里带扩号的内容去掉，金额负的表红，按不门hz一下放新标
+  [ 0.18s] 我理解的是：删除备注中的括号内容；金额负数标红；按部门汇总金额到新表
+  [ 1.35s] 完整计划（4 步，尝试 1 次）:
+     s1 regex_replace      {"col": "备注", "pattern": "[\\(（][^\\)）]*[\\)）]", "repl": ""}
+     s2 conditional_format {"where": {"col": "金额", "cmp": "<", "value": 0}, "apply_to": "cell", "style": {"font_color": "FF0000"}}
+     s3 group_aggregate    {"by": ["部门"], "aggs": [{"col": "金额", "fn": "sum"}], "output_sheet": "按部门汇总", "mode": "formula"}
+     s4 save               {"path": "ledger_处理后.xlsx"}
+  [写盘确认] save {"path": "ledger_处理后.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 regex_replace: 4 cells changed
+     s2 conditional_format: live rule on C2:C9: =AND(ISNUMBER($C2),$C2<0)
+     s3 group_aggregate: 4 groups -> sheet '按部门汇总' (formula)
+     s4 save: saved ledger_处理后.xlsx
+    ── ledger_处理后.xlsx / 流水
+      日期 | 部门 | 金额 | 备注
+      2026-10-01 | 销售部 | 12000 | 客户A
+      2026-10-02 | 财务部 | -300 | 退款
+      2026-10-03 | 销售部 | 8000 | 客户B
+      2026-10-05 | 研发部 | -50.5 | 报销
+      2026-10-06 | 财务部 | 1000 | 
+      2026-10-08 | 研发部 | 23000 | 服务器采购
+      2026-10-09 | 市场部 | -1200 | 活动退款
+      2026-10-09 | 市场部 | 4500 | 
+       |  |  | 
+      [条件格式] C2:C9: =AND(ISNUMBER($C2),$C2<0)
+    ── ledger_处理后.xlsx / 部门预算
+      部门 | 预算 | 负责人
+      销售部 | 30000 | 张伟
+      财务部 | 5000 | 王芳
+      研发部 | 50000 | 李娜
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    ── ledger_处理后.xlsx / 按部门汇总
+      部门 | sum_金额
+      市场部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A2)
+      研发部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A3)
+      财务部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A4)
+      销售部 | =SUMIFS('流水'!$C:$C,'流水'!$B:$B,$A5)
+       | 
+       | 
+       | 
+       | 
+       | 
+    file: ledger.xlsx
+    file: ledger_处理后.xlsx
+    file: sales.xlsx
+
+====================================================================================================
+指令: 把带括号的备注删了
+  [ 0.07s] 我理解的是：删除备注中的括号内容
+  [ 1.23s] 完整计划（2 步，尝试 1 次）:
+     s1 regex_replace      {"col": "备注", "pattern": "[\\(（][^\\)）]*[\\)）]", "repl": ""}
+     s2 save               {"path": "ledger_处理后.xlsx"}
+  ❓ “删掉带括号的备注”是指删除备注里括号及括号中的文字，还是删除备注含括号的整行？
+     → 按当前计划执行
+  [写盘确认] save {"path": "ledger_处理后.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 regex_replace: 4 cells changed
+     s2 save: saved ledger_处理后.xlsx
+    ── ledger_处理后.xlsx / 流水
+      日期 | 部门 | 金额 | 备注
+      2026-10-01 | 销售部 | 12000 | 客户A
+      2026-10-02 | 财务部 | -300 | 退款
+      2026-10-03 | 销售部 | 8000 | 客户B
+      2026-10-05 | 研发部 | -50.5 | 报销
+      2026-10-06 | 财务部 | 1000 | 
+      2026-10-08 | 研发部 | 23000 | 服务器采购
+      2026-10-09 | 市场部 | -1200 | 活动退款
+      2026-10-09 | 市场部 | 4500 | 
+       |  |  | 
+    ── ledger_处理后.xlsx / 部门预算
+      部门 | 预算 | 负责人
+      销售部 | 30000 | 张伟
+      财务部 | 5000 | 王芳
+      研发部 | 50000 | 李娜
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    file: ledger.xlsx
+    file: ledger_处理后.xlsx
+    file: sales.xlsx
+
+====================================================================================================
+指令: 按部门从部门预算表把预算查过来，查不到写“未找到”，再把金额大于1000的筛出来放新表
+  [ 0.16s] 我理解的是：按部门从部门预算查预算；筛选金额>1000到新表
+  [ 1.02s] 完整计划（3 步，尝试 1 次）:
+     s1 lookup_column      {"name": "预算", "key": "部门", "from_sheet": "部门预算", "from_key": "部门", "return": "预算", "if_not_found": "未找到"}
+     s2 filter_to_sheet    {"where": {"col": "金额", "cmp": ">", "value": 1000}, "output_sheet": "筛选_金额"}
+     s3 save               {"path": "ledger_处理后.xlsx"}
+  [写盘确认] save {"path": "ledger_处理后.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 lookup_column: column 预算 <- 部门预算.预算 (2 keys not found, formula)
+     s2 filter_to_sheet: 4 rows -> sheet '筛选_金额' (live FILTER over A2:E5)
+     s3 save: saved ledger_处理后.xlsx
+    ── ledger_处理后.xlsx / 流水
+      日期 | 部门 | 金额 | 备注 | 预算
+      2026-10-01 | 销售部 | 12000 | 客户A（首付） | =_xlfn.XLOOKUP(B2,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+      2026-10-02 | 财务部 | -300 | 退款(重复扣款) | =_xlfn.XLOOKUP(B3,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+      2026-10-03 | 销售部 | 8000 | 客户B | =_xlfn.XLOOKUP(B4,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+      2026-10-05 | 研发部 | -50.5 |   报销（打车）  | =_xlfn.XLOOKUP(B5,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+      2026-10-06 | 财务部 | 1000 |  | =_xlfn.XLOOKUP(B6,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+      2026-10-08 | 研发部 | 23000 | 服务器采购（一期） | =_xlfn.XLOOKUP(B7,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+      2026-10-09 | 市场部 | -1200 | 活动退款 | =_xlfn.XLOOKUP(B8,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+      2026-10-09 | 市场部 | 4500 |  | =_xlfn.XLOOKUP(B9,'部门预算'!$A:$A,'部门预算'!$B:$B,"未找到")
+       |  |  |  | 
+    ── ledger_处理后.xlsx / 部门预算
+      部门 | 预算 | 负责人
+      销售部 | 30000 | 张伟
+      财务部 | 5000 | 王芳
+      研发部 | 50000 | 李娜
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    ── ledger_处理后.xlsx / 筛选_金额
+      日期 | 部门 | 金额 | 备注 | 预算
+      <openpyxl.worksheet.formula.ArrayFormula object at 0x770e37983550> |  |  |  | 
+       |  |  |  | 
+       |  |  |  | 
+       |  |  |  | 
+       |  |  |  | 
+       |  |  |  | 
+       |  |  |  | 
+       |  |  |  | 
+       |  |  |  | 
+    file: ledger.xlsx
+    file: ledger_处理后.xlsx
+    file: sales.xlsx
+
+====================================================================================================
+指令: pls dedupe by order id, add col revenue = qty*unit price, then list distinct regions w/ counts
+  [ 0.13s] 我理解的是：remove duplicates; add column Revenue; unique Region + counts
+  [ 0.96s] 完整计划（4 步，尝试 1 次）:
+     s1 dedupe             {"cols": ["Order ID"]}
+     s2 add_column         {"name": "Revenue", "formula": "=[Qty]*[Unit Price]"}
+     s3 unique_to_sheet    {"col": "Region", "output_sheet": "Region list", "with_count": true}
+     s4 save               {"path": "sales_processed.xlsx"}
+  [⚠ 破坏性操作确认] dedupe {"cols": ["Order ID"]} → 自动确认（--yes）
+  [写盘确认] save {"path": "sales_processed.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 dedupe: 1 duplicate rows removed
+     s2 add_column: column Revenue = =E{r}*F{r}
+     s3 unique_to_sheet: 4 unique values -> sheet 'Region list' (live UNIQUE)
+     s4 save: saved sales_processed.xlsx
+    ── sales_processed.xlsx / Orders
+      Order ID | Sales Rep | Region | Product | Qty | Unit Price | Remarks | Revenue
+      SO-1001 | Alice | East | Laptop | 3 | 5999 | urgent (VIP) | =E2*F2
+      SO-1002 | Bob | South | Monitor | 10 | 1299 |  | =E3*F3
+      SO-1003 | Alice | East | Mouse | 50 | 59.9 |  | =E4*F4
+      SO-1004 | Carol | North | Laptop | 1 | 6299 | demo unit (return) | =E5*F5
+      SO-1005 | Dave | West | Keyboard | 20 | 199 |  | =E6*F6
+       |  |  |  |  |  |  | 
+       |  |  |  |  |  |  | 
+       |  |  |  |  |  |  | 
+       |  |  |  |  |  |  | 
+    ── sales_processed.xlsx / Catalog
+      Product | Category | List Price
+      Laptop | PC | 6299
+      Monitor | Display | 1399
+      Mouse | Accessory | 69
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    ── sales_processed.xlsx / Region list
+      Region | Count
+      <openpyxl.worksheet.formula.ArrayFormula object at 0x770e3797d890> | =COUNTIF('Orders'!$C:$C,A2)
+       | =COUNTIF('Orders'!$C:$C,A3)
+       | =COUNTIF('Orders'!$C:$C,A4)
+       | =COUNTIF('Orders'!$C:$C,A5)
+       | 
+       | 
+       | 
+       | 
+       | 
+    file: ledger.xlsx
+    file: sales.xlsx
+    file: sales_processed.xlsx
+
+====================================================================================================
+指令: 把金额小于0的行删了，改完直接覆盖原文件
+  [ 0.12s] 我理解的是：删除金额<0的行；覆盖保存原文件
+  [ 0.50s] 完整计划（2 步，尝试 1 次）:
+     s1 delete_rows        {"where": {"col": "金额", "cmp": "<", "value": 0}}
+     s2 save               {"path": "ledger.xlsx"}
+  [⚠ 破坏性操作确认] delete_rows {"where": {"col": "金额", "cmp": "<", "value": 0}} → 自动确认（--yes）
+  [⚠ 破坏性操作确认] save {"path": "ledger.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 delete_rows: 3 rows deleted
+     auto-backup ledger.xlsx -> _backup/ledger.20261104-191013.xlsx
+     s2 save: saved ledger.xlsx
+    ── ledger.xlsx / 流水
+      日期 | 部门 | 金额 | 备注
+      2026-10-01 | 销售部 | 12000 | 客户A（首付）
+      2026-10-03 | 销售部 | 8000 | 客户B
+      2026-10-06 | 财务部 | 1000 | 
+      2026-10-08 | 研发部 | 23000 | 服务器采购（一期）
+      2026-10-09 | 市场部 | 4500 | 
+       |  |  | 
+       |  |  | 
+       |  |  | 
+       |  |  | 
+    ── ledger.xlsx / 部门预算
+      部门 | 预算 | 负责人
+      销售部 | 30000 | 张伟
+      财务部 | 5000 | 王芳
+      研发部 | 50000 | 李娜
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    file: ledger.xlsx
+    file: sales.xlsx
+
+====================================================================================================
+指令: 按单价降序排一下，弄完保存
+  [ 0.09s] 我理解的是：按Unit Price降序排序
+  [ 0.89s] 完整计划（2 步，尝试 1 次）:
+     s1 sort               {"by": [{"col": "Unit Price", "desc": true}]}
+     s2 save               {"path": "sales_处理后.xlsx"}
+  ❓ 要直接覆盖原文件 sales.xlsx 吗？默认另存为 sales_处理后.xlsx，原文件不动。
+     → 按当前计划执行
+  [写盘确认] save {"path": "sales_处理后.xlsx"} → 自动确认（--yes）
+  执行日志:
+     s1 sort: 6 rows sorted
+     s2 save: saved sales_处理后.xlsx
+    ── sales_处理后.xlsx / Orders
+      Order ID | Sales Rep | Region | Product | Qty | Unit Price | Remarks
+      SO-1004 | Carol | North | Laptop | 1 | 6299 | demo unit (return)
+      SO-1004 | Carol | North | Laptop | 1 | 6299 | demo unit (return)
+      SO-1001 | Alice | East | Laptop | 3 | 5999 | urgent (VIP)
+      SO-1002 | Bob | South | Monitor | 10 | 1299 | 
+      SO-1005 | Dave | West | Keyboard | 20 | 199 | 
+      SO-1003 | Alice | East | Mouse | 50 | 59.9 | 
+       |  |  |  |  |  | 
+       |  |  |  |  |  | 
+       |  |  |  |  |  | 
+    ── sales_处理后.xlsx / Catalog
+      Product | Category | List Price
+      Laptop | PC | 6299
+      Monitor | Display | 1399
+      Mouse | Accessory | 69
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+       |  | 
+    file: ledger.xlsx
+    file: sales.xlsx
+    file: sales_处理后.xlsx

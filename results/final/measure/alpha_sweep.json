@@ -1,0 +1,50 @@
+{
+ "0.85": {
+  "ppl": 22.6811,
+  "sumifs": 1.0,
+  "vlookup": 1.0,
+  "xlookup": 1.0,
+  "filter": 1.0,
+  "unique": 1.0,
+  "textjoin": 1.0,
+  "xmatch": 1.0,
+  "textbefore": 1.0,
+  "textsplit": 1.0,
+  "vstack": 1.0,
+  "sortby": 1.0,
+  "ifs": 0.5,
+  "regex": 1.0
+ },
+ "0.7": {
+  "ppl": 20.7689,
+  "sumifs": 1.0,
+  "vlookup": 1.0,
+  "xlookup": 1.0,
+  "filter": 1.0,
+  "unique": 1.0,
+  "textjoin": 1.0,
+  "xmatch": 1.0,
+  "textbefore": 1.0,
+  "textsplit": 1.0,
+  "vstack": 1.0,
+  "sortby": 1.0,
+  "ifs": 0.45,
+  "regex": 1.0
+ },
+ "0.55": {
+  "ppl": 19.307,
+  "sumifs": 1.0,
+  "vlookup": 1.0,
+  "xlookup": 1.0,
+  "filter": 1.0,
+  "unique": 1.0,
+  "textjoin": 1.0,
+  "xmatch": 1.0,
+  "textbefore": 1.0,
+  "textsplit": 1.0,
+  "vstack": 1.0,
+  "sortby": 1.0,
+  "ifs": 0.15,
+  "regex": 1.0
+ }
+}

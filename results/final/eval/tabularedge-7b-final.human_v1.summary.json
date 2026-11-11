@@ -1,0 +1,10 @@
+{
+ "n": 34,
+ "exec_eq": 0.941,
+ "exec_eq_clear": 0.929,
+ "valid": 0.971,
+ "amb_recall": 1.0,
+ "n_amb": 6,
+ "amb_fp": 0.0,
+ "sec_avg": 0.65
+}

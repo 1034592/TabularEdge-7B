@@ -1,0 +1,20 @@
+{
+ "machine": "VPS, 1 vCPU, 3 GB RAM, Linux 6.1.0-35-amd64",
+ "python": "3.11.2",
+ "input": "test_cases/make_big.py default output (synthetic, 761,507 data rows x 25 cols)",
+ "result": {
+  "file_mb": 104.8,
+  "dims": [
+   761508,
+   25
+  ],
+  "open_s": 0.002,
+  "head_s": 0.062,
+  "lookup_s": 15.64,
+  "keys": 2000,
+  "hits": 1000,
+  "correct": true,
+  "peak_rss_mb": 80.6
+ },
+ "note": "peak_rss_mb is ru_maxrss of the whole benchmark process (includes Python + openpyxl import + reading the 2,000-row list)."
+}

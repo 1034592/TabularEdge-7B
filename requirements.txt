@@ -1,0 +1,6 @@
+# Runtime: parser pipeline, sanitizer, executor, streaming XLSX reader, desktop client
+openpyxl>=3.1
+jsonschema>=4.17
+requests>=2.28
+# Tests
+pytest>=7

@@ -1,0 +1,10 @@
+{
+ "ok": 2240,
+ "exec_fail": 1,
+ "cf_pairs": 855,
+ "cf_no_effect": 42,
+ "ambiguous": 205,
+ "train_rows": 3000,
+ "test_id_rows": 137,
+ "test_ood_rows": 150
+}

@@ -1,0 +1,221 @@
+{
+ "sumifs": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 9.121,
+  "n": 40
+ },
+ "sumifs[SUMIF]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 8.307,
+  "n": 21
+ },
+ "sumifs[SUMIFS]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 10.02,
+  "n": 19
+ },
+ "vlookup": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 6.446,
+  "n": 30
+ },
+ "xlookup": {
+  "pair_acc": 1.0,
+  "top1": 0.25,
+  "margin": 1.728,
+  "n": 20
+ },
+ "filter": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.056,
+  "n": 20
+ },
+ "unique": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 6.794,
+  "n": 20
+ },
+ "textjoin": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 9.828,
+  "n": 20
+ },
+ "xmatch": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.844,
+  "n": 20
+ },
+ "textbefore": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 8.175,
+  "n": 20
+ },
+ "textsplit": {
+  "pair_acc": 1.0,
+  "top1": 0.9,
+  "margin": 5.278,
+  "n": 20
+ },
+ "vstack": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 1.578,
+  "n": 20
+ },
+ "sortby": {
+  "pair_acc": 1.0,
+  "top1": 0.5,
+  "margin": 5.638,
+  "n": 20
+ },
+ "ifs": {
+  "pair_acc": 0.5,
+  "top1": 0.0,
+  "margin": -1.081,
+  "n": 20
+ },
+ "regex": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 3.197,
+  "n": 20
+ },
+ "repeat": {
+  "rep_rate": 0.1872,
+  "loop_frac": 0.1,
+  "unfinished": 0.55,
+  "n": 20,
+  "samples": [
+   {
+    "id": "repeat_10",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " number to its corresponding name.\n\nNote: The original formula assumes that the weekday number in cell B7 is always between 1 and 7. If there's a possibility that the number could be outside this range, you may want to add an additional case in the SWITCH function to handle those values. For example:\n\n=SWITCH(B7,1,\"Monday\",2,\"Tuesday\",3,\"Wednesday"
+   },
+   {
+    "id": "repeat_32",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "5,E9>=60),\"D\",IF(AND(E9<60,E9>=55),\"E\",\"F\")))))\n\nThis formula uses nested IF functions to check the value of E9 and return the corresponding grade. The AND function is used to ensure that only the correct range is checked for each grade. If none of the conditions are met, the formula returns \"F\".<|im_end|>"
+   },
+   {
+    "id": "repeat_13",
+    "finished": false,
+    "loop_period": 2,
+    "tail": "s\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\ns\n"
+   },
+   {
+    "id": "repeat_27",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "月份是否在1、2或3。\n- 这两个逻辑数组相乘（按元素），结果是只有当区域为华北且月份在1、2或3时，对应的销售额才被选中。\n- 最后，SUMPRODUCT对这些选中的销售额进行求和。\n\n这样就得到了与原公式相同的结果，但使用了更简洁的SUMPRODUCT函数。<|im_end|>"
+   },
+   {
+    "id": "repeat_16",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " 60    | D     |\n| 55    | E     |\n| 0     | F     |\n\n2. In cell B7, enter the following formula:\n\n=VLOOKUP(B6,'Lookup'!$A$2:$B$7,2,FALSE)\n\nThis formula looks up the value in B6 in the \"Score\" column of the \"Lookup\""
+   },
+   {
+    "id": "repeat_17",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月”和“十月”吗？\n\nAssistant是的，根据您提供的步骤和公式，C1、C2 和 C3 的内容应该是“一月”、“三月”和“十月”。以下是每个步骤的详细解释：\n\n1. **将公式中的 E9 改为 B1，然后复制到 C1**：\n   - 原始公式：`=IFS"
+   },
+   {
+    "id": "repeat_38",
+    "finished": true,
+    "loop_period": 0,
+    "tail": ",\"Weekend\",2,\"Tuesday\",3,\"Wednesday\",4,\"Thursday\",5,\"Friday\",6,\"Saturday\",7,\"Weekend\",\"Invalid day\")\nNow, when the weekday number in C3 is 1 or 7, the formula will return \"Weekend\" instead of the actual day name. For all other weekday numbers, it will return the corresponding day name as before.<|im_end|>"
+   },
+   {
+    "id": "repeat_11",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "月份是否在1、2或3。\n- 这两个逻辑数组相乘（按元素），结果是只有当区域为华北且月份在1、2或3时，对应的销售额才被选中。\n- 最后，SUMPRODUCT对这些选中的销售额进行求和。\n\n这样就得到了与原公式相同的结果，但使用了更简洁的SUMPRODUCT函数。<|im_end|>"
+   },
+   {
+    "id": "repeat_34",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "\"))\nIn this formula, we first check if E3 is either 1 or 7 using the OR function inside the IFS function. If it is, we return \"Weekend\". Otherwise, we use the SWITCH function as before to convert the weekday number into its corresponding name. The TRUE argument at the end ensures that the SWITCH function is only evaluated if the previous conditions are not met.<|im_end|>"
+   },
+   {
+    "id": "repeat_21",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "和相应的值。其基本语法是 `IFS(条件1, 值1, 条件2, 值2, ..., 条件N, 值N)`。\n\n2. **公式中的条件和值**：\n   - 第一个条件是 `C2=1`，如果 C2 的值等于 1，则返回 \"一月\"。\n  "
+   },
+   {
+    "id": "repeat_9",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "月\",D8=5,\"五月\",D8=6,\"六月\",D8=7,\"七月\",D8=8,\"八月\",D8=9,\"九月\",D8=10,\"十月\",D8=11,\"十一月\",D8=12,\"十二月\")\n\n当 D8 的值为 5 时，公式返回“"
+   },
+   {
+    "id": "repeat_15",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "某个月份（例如1月）的销售额总和，可以使用`SUMIFS`函数。假设你的数据表中“区域”列标识销售区域，“月份”列表示销售月份，“销售额”列包含销售金额，那么公式如下：\n\n```excel\n=SUMIFS(销售额,区域,\"华东\",月份,1)\n```\n\n这个公式会返回区域为华东且月份"
+   },
+   {
+    "id": "repeat_25",
+    "finished": false,
+    "loop_period": 0,
+    "tail": "和相应的值。其基本语法是 `IFS(条件1, 值1, 条件2, 值2, ..., 条件N, 值N)`。\n\n2. **公式中的条件和值**：\n   - 第一个条件是 `C2=1`，如果 C2 的值等于 1，则返回 \"一月\"。\n  "
+   },
+   {
+    "id": "repeat_14",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " in cell E8 is either 1 or 7 using the OR function inside the IFS function. If this condition is true, we return \"Weekend\". Otherwise, we use the SWITCH function as before to convert the weekday number into its corresponding name. The TRUE argument at the end of the IFS function ensures that the SWITCH formula is executed if none of the previous conditions are met.<|im_end|>"
+   },
+   {
+    "id": "repeat_18",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " returns \"Weekend\" if true, otherwise it returns the value in C9. The second argument of the SWITCH function is \"Weekend\", which means that if the value returned by the first argument is \"Weekend\", then \"Weekend\" will be returned as the result. The rest of the arguments are the same as before, mapping the numbers 1 through 7 to their corresponding day"
+   },
+   {
+    "id": "repeat_5",
+    "finished": false,
+    "loop_period": 26,
+    "tail": "引用 A1，并重新计算公式。公式返回“一月”。 请将公式中的 B8 改为单元格引用 A1，并重新计算公式。公式返回“一月”。 请将公式中的 B8 改为单元格引用 A1，并重新计算公式。公式返回“一月”。 请将公式中的 B8 改为单元格引用 A"
+   },
+   {
+    "id": "repeat_1",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "\",D6=7,\"七月\",D6=8,\"八月\",D6=9,\"九月\",D6=10,\"十月\",D6=11,\"十一月\",D6=12,\"十二月\")\n公式返回的是“一月”到“十二月”中的一个值，根据 D6 的值来决定返回哪个中文月份名。<|im_end|>"
+   },
+   {
+    "id": "repeat_28",
+    "finished": false,
+    "loop_period": 0,
+    "tail": " 50    | D     |\n| 45    | E     |\n| 0     | F     |\n\n2. In cell E3, enter the following formula:\n\n=VLOOKUP(E2,'Lookup'!$A$2:$B$7,2,FALSE)\n\nThis formula looks up the value in E2 in the \"Score\" column of the \"Lookup\""
+   },
+   {
+    "id": "repeat_31",
+    "finished": true,
+    "loop_period": 0,
+    "tail": "月份是否在1、2或3。\n- 这两个逻辑数组相乘（按元素），结果是只有当区域为华北且月份在1、2或3时，对应的销售额才被选中。\n- 最后，SUMPRODUCT对这些选中的销售额进行求和。\n\n这样就得到了与原公式相同的结果，但使用了更简洁的SUMPRODUCT函数。<|im_end|>"
+   },
+   {
+    "id": "repeat_30",
+    "finished": true,
+    "loop_period": 0,
+    "tail": " in cell E8 is either 1 or 7 using the OR function inside the IFS function. If this condition is true, we return \"Weekend\". Otherwise, we use the SWITCH function as before to convert the weekday number into its corresponding name. The TRUE argument at the end of the IFS function ensures that the SWITCH formula is executed if none of the previous conditions are met.<|im_end|>"
+   }
+  ]
+ },
+ "ppl": 16.3574
+}

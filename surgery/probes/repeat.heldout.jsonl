@@ -1,0 +1,20 @@
+{"family": "repeat", "id": "repeat_10", "kind": "repeat", "prompt": "Excel formula using SWITCH to turn weekday number in B7 (1-7) into names:\n=SWITCH(B7,1,\"Monday\",2,\"Tuesday\",", "template": 2}
+{"family": "repeat", "id": "repeat_32", "kind": "repeat", "prompt": "Write one Excel formula that converts the score in E9 to grades A (>=95), B (>=80), C (>=75), D (>=60), E (>=55), else F:\n=IF(E9>=95,\"A\",IF(", "template": 0}
+{"family": "repeat", "id": "repeat_13", "kind": "repeat", "prompt": "用 IFS 把 C5 中的月份数字(1-12)转成中文月份名：\n=IFS(C5=1,\"一月\",C5=2,\"二月\",", "template": 1}
+{"family": "repeat", "id": "repeat_27", "kind": "repeat", "prompt": "=SUMIFS(销售额,区域,\"华北\",月份,1)+SUMIFS(销售额,区域,\"华北\",月份,2)+SUMIFS(", "template": 3}
+{"family": "repeat", "id": "repeat_16", "kind": "repeat", "prompt": "Write one Excel formula that converts the score in B6 to grades A (>=75), B (>=70), C (>=65), D (>=60), E (>=55), else F:\n=IF(B6>=75,\"A\",IF(", "template": 0}
+{"family": "repeat", "id": "repeat_17", "kind": "repeat", "prompt": "用 IFS 把 E9 中的月份数字(1-12)转成中文月份名：\n=IFS(E9=1,\"一月\",E9=2,\"二月\",", "template": 1}
+{"family": "repeat", "id": "repeat_38", "kind": "repeat", "prompt": "Excel formula using SWITCH to turn weekday number in C3 (1-7) into names:\n=SWITCH(C3,1,\"Monday\",2,\"Tuesday\",", "template": 2}
+{"family": "repeat", "id": "repeat_11", "kind": "repeat", "prompt": "=SUMIFS(销售额,区域,\"华北\",月份,1)+SUMIFS(销售额,区域,\"华北\",月份,2)+SUMIFS(", "template": 3}
+{"family": "repeat", "id": "repeat_34", "kind": "repeat", "prompt": "Excel formula using SWITCH to turn weekday number in E3 (1-7) into names:\n=SWITCH(E3,1,\"Monday\",2,\"Tuesday\",", "template": 2}
+{"family": "repeat", "id": "repeat_21", "kind": "repeat", "prompt": "用 IFS 把 C2 中的月份数字(1-12)转成中文月份名：\n=IFS(C2=1,\"一月\",C2=2,\"二月\",", "template": 1}
+{"family": "repeat", "id": "repeat_9", "kind": "repeat", "prompt": "用 IFS 把 D8 中的月份数字(1-12)转成中文月份名：\n=IFS(D8=1,\"一月\",D8=2,\"二月\",", "template": 1}
+{"family": "repeat", "id": "repeat_15", "kind": "repeat", "prompt": "=SUMIFS(销售额,区域,\"华南\",月份,1)+SUMIFS(销售额,区域,\"华南\",月份,2)+SUMIFS(", "template": 3}
+{"family": "repeat", "id": "repeat_25", "kind": "repeat", "prompt": "用 IFS 把 C2 中的月份数字(1-12)转成中文月份名：\n=IFS(C2=1,\"一月\",C2=2,\"二月\",", "template": 1}
+{"family": "repeat", "id": "repeat_14", "kind": "repeat", "prompt": "Excel formula using SWITCH to turn weekday number in E8 (1-7) into names:\n=SWITCH(E8,1,\"Monday\",2,\"Tuesday\",", "template": 2}
+{"family": "repeat", "id": "repeat_18", "kind": "repeat", "prompt": "Excel formula using SWITCH to turn weekday number in C9 (1-7) into names:\n=SWITCH(C9,1,\"Monday\",2,\"Tuesday\",", "template": 2}
+{"family": "repeat", "id": "repeat_5", "kind": "repeat", "prompt": "用 IFS 把 B8 中的月份数字(1-12)转成中文月份名：\n=IFS(B8=1,\"一月\",B8=2,\"二月\",", "template": 1}
+{"family": "repeat", "id": "repeat_1", "kind": "repeat", "prompt": "用 IFS 把 D6 中的月份数字(1-12)转成中文月份名：\n=IFS(D6=1,\"一月\",D6=2,\"二月\",", "template": 1}
+{"family": "repeat", "id": "repeat_28", "kind": "repeat", "prompt": "Write one Excel formula that converts the score in E2 to grades A (>=80), B (>=75), C (>=55), D (>=50), E (>=45), else F:\n=IF(E2>=80,\"A\",IF(", "template": 0}
+{"family": "repeat", "id": "repeat_31", "kind": "repeat", "prompt": "=SUMIFS(销售额,区域,\"华北\",月份,1)+SUMIFS(销售额,区域,\"华北\",月份,2)+SUMIFS(", "template": 3}
+{"family": "repeat", "id": "repeat_30", "kind": "repeat", "prompt": "Excel formula using SWITCH to turn weekday number in E8 (1-7) into names:\n=SWITCH(E8,1,\"Monday\",2,\"Tuesday\",", "template": 2}

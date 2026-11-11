@@ -1,0 +1,990 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "urn:tabularedge:action-plan:0.1",
+ "title": "TabularEdge Action Plan v0.1 (Layer 2 -> Layer 1)",
+ "description": "第二层输出、第一层执行的唯一契约。模型只生成本结构，不生成可执行代码；执行器负责把每个 step 映射为确定性操作。",
+ "type": "object",
+ "required": [
+  "version",
+  "lang",
+  "steps"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "version": {
+   "enum": [
+    "0.1",
+    "0.2"
+   ]
+  },
+  "lang": {
+   "enum": [
+    "zh",
+    "en",
+    "mixed"
+   ]
+  },
+  "summary": {
+   "type": "string",
+   "maxLength": 200,
+   "description": "一句话复述用户意图，供 UI 二次确认"
+  },
+  "inputs": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": [
+     "alias",
+     "path"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "alias": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+     },
+     "path": {
+      "type": "string"
+     },
+     "sheet": {
+      "type": "string"
+     },
+     "header_row": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1
+     }
+    }
+   }
+  },
+  "steps": {
+   "type": "array",
+   "minItems": 1,
+   "maxItems": 64,
+   "items": {
+    "$ref": "#/$defs/step"
+   }
+  },
+  "ambiguities": {
+   "type": "array",
+   "description": "模型不确定的解读。UI 必须在执行前让用户确认或选择 alternatives。",
+   "items": {
+    "type": "object",
+    "required": [
+     "step_id",
+     "question"
+    ],
+    "additionalProperties": false,
+    "properties": {
+     "step_id": {
+      "type": "string"
+     },
+     "question": {
+      "type": "string"
+     },
+     "alternatives": {
+      "type": "array",
+      "items": {
+       "$ref": "#/$defs/step"
+      }
+     }
+    }
+   }
+  }
+ },
+ "$defs": {
+  "col": {
+   "description": "列引用：表头名(优先) 或 列字母 如 'C'",
+   "type": "string",
+   "minLength": 1
+  },
+  "sheet_ref": {
+   "type": "string",
+   "description": "工作表名；省略=当前活动表"
+  },
+  "condition": {
+   "type": "object",
+   "oneOf": [
+    {
+     "required": [
+      "col",
+      "cmp"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "col": {
+       "$ref": "#/$defs/col"
+      },
+      "cmp": {
+       "enum": [
+        "==",
+        "!=",
+        "<",
+        "<=",
+        ">",
+        ">=",
+        "contains",
+        "not_contains",
+        "regex",
+        "is_empty",
+        "not_empty",
+        "startswith",
+        "endswith"
+       ]
+      },
+      "value": {}
+     }
+    },
+    {
+     "required": [
+      "all"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "all": {
+       "type": "array",
+       "items": {
+        "$ref": "#/$defs/condition"
+       },
+       "minItems": 1
+      }
+     }
+    },
+    {
+     "required": [
+      "any"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "any": {
+       "type": "array",
+       "items": {
+        "$ref": "#/$defs/condition"
+       },
+       "minItems": 1
+      }
+     }
+    }
+   ]
+  },
+  "style": {
+   "type": "object",
+   "additionalProperties": false,
+   "properties": {
+    "font_color": {
+     "type": "string",
+     "pattern": "^[0-9A-Fa-f]{6}$"
+    },
+    "fill_color": {
+     "type": "string",
+     "pattern": "^[0-9A-Fa-f]{6}$"
+    },
+    "bold": {
+     "type": "boolean"
+    }
+   }
+  },
+  "step": {
+   "type": "object",
+   "required": [
+    "id",
+    "op",
+    "args"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "id": {
+     "type": "string",
+     "pattern": "^s[0-9]+$"
+    },
+    "op": {
+     "type": "string"
+    },
+    "sheet": {
+     "$ref": "#/$defs/sheet_ref"
+    },
+    "args": {
+     "type": "object"
+    },
+    "depends_on": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "note": {
+     "type": "string"
+    }
+   },
+   "allOf": [
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "regex_replace"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "col",
+         "pattern"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "col": {
+          "$ref": "#/$defs/col"
+         },
+         "pattern": {
+          "type": "string"
+         },
+         "repl": {
+          "type": "string",
+          "default": ""
+         },
+         "strip": {
+          "type": "boolean",
+          "default": true
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "trim"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "cols"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "cols": {
+          "type": "array",
+          "items": {
+           "$ref": "#/$defs/col"
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "delete_rows"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "where"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "where": {
+          "$ref": "#/$defs/condition"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "dedupe"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "cols": {
+          "type": "array",
+          "items": {
+           "$ref": "#/$defs/col"
+          }
+         },
+         "keep": {
+          "enum": [
+           "first",
+           "last"
+          ],
+          "default": "first"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "fill_empty"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "col",
+         "value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "col": {
+          "$ref": "#/$defs/col"
+         },
+         "value": {}
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "sort"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "by"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "by": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+           "type": "object",
+           "required": [
+            "col"
+           ],
+           "additionalProperties": false,
+           "properties": {
+            "col": {
+             "$ref": "#/$defs/col"
+            },
+            "desc": {
+             "type": "boolean",
+             "default": false
+            }
+           }
+          }
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "add_column"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "name",
+         "formula"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "name": {
+          "type": "string"
+         },
+         "formula": {
+          "type": "string",
+          "description": "以 = 开头；用 {r} 表示当前行号，用 [列名] 表示同行该列单元格，如 =[单价]*[数量]"
+         },
+         "at": {
+          "type": "string",
+          "pattern": "^[A-Z]{1,3}$",
+          "description": "放到哪一列（列字母）；该列及之后的列右移。省略=追加到最后"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "conditional_format"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "where",
+         "style"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "where": {
+          "$ref": "#/$defs/condition"
+         },
+         "apply_to": {
+          "enum": [
+           "cell",
+           "row"
+          ],
+          "default": "cell"
+         },
+         "style": {
+          "$ref": "#/$defs/style"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "number_format"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "col",
+         "format"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "col": {
+          "$ref": "#/$defs/col"
+         },
+         "format": {
+          "type": "string"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "group_aggregate"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "by",
+         "aggs",
+         "output_sheet"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "by": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+           "$ref": "#/$defs/col"
+          }
+         },
+         "aggs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+           "type": "object",
+           "required": [
+            "col",
+            "fn"
+           ],
+           "additionalProperties": false,
+           "properties": {
+            "col": {
+             "$ref": "#/$defs/col"
+            },
+            "fn": {
+             "enum": [
+              "sum",
+              "count",
+              "avg",
+              "min",
+              "max"
+             ]
+            },
+            "as": {
+             "type": "string"
+            }
+           }
+          }
+         },
+         "output_sheet": {
+          "type": "string"
+         },
+         "mode": {
+          "enum": [
+           "formula",
+           "value"
+          ],
+          "default": "formula",
+          "description": "formula=写 SUMIFS 等活公式（源表改了汇总自动更新）"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "lookup_join"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "right",
+         "on",
+         "fetch"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "right": {
+          "type": "string",
+          "description": "inputs.alias 或 本簿工作表名"
+         },
+         "on": {
+          "$ref": "#/$defs/col"
+         },
+         "right_on": {
+          "$ref": "#/$defs/col"
+         },
+         "fetch": {
+          "type": "array",
+          "items": {
+           "$ref": "#/$defs/col"
+          },
+          "minItems": 1
+         },
+         "if_not_found": {
+          "type": "string",
+          "default": ""
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "save"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "path"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "path": {
+          "type": "string"
+         },
+         "format": {
+          "enum": [
+           "xlsx",
+           "csv"
+          ],
+          "default": "xlsx"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "fs_mkdir"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "path_template"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "path_template": {
+          "type": "string",
+          "description": "可含 {yyyy} {mm} {dept} 等占位"
+         },
+         "expand": {
+          "type": "object",
+          "description": "占位符 -> 取值列表，做笛卡尔积展开"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "fs_backup"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "path"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "path": {
+          "type": "string"
+         },
+         "backup_dir": {
+          "type": "string",
+          "default": "_backup"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "fs_new_workbook"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "path",
+         "headers"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "path": {
+          "type": "string"
+         },
+         "sheet": {
+          "type": "string",
+          "default": "Sheet1"
+         },
+         "headers": {
+          "type": "array",
+          "items": {
+           "type": "string"
+          },
+          "minItems": 1
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "fs_merge_workbooks"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "glob",
+         "output"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "glob": {
+          "type": "string"
+         },
+         "output": {
+          "type": "string"
+         },
+         "add_source_col": {
+          "type": "boolean",
+          "default": true
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "split_to_files"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "required": [
+         "by",
+         "path_template"
+        ],
+        "additionalProperties": false,
+        "properties": {
+         "by": {
+          "$ref": "#/$defs/col"
+         },
+         "path_template": {
+          "type": "string",
+          "description": "如 out/{value}.xlsx"
+         }
+        }
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "lookup_column"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "name": {
+          "type": "string"
+         },
+         "key": {
+          "$ref": "#/$defs/col"
+         },
+         "from_sheet": {
+          "type": "string",
+          "description": "本工作簿中的另一张表"
+         },
+         "from_key": {
+          "type": "string"
+         },
+         "return": {
+          "type": "string"
+         },
+         "if_not_found": {
+          "type": [
+           "string",
+           "number"
+          ],
+          "default": ""
+         },
+         "mode": {
+          "enum": [
+           "formula",
+           "value"
+          ],
+          "default": "formula"
+         }
+        },
+        "required": [
+         "name",
+         "key",
+         "from_sheet",
+         "from_key",
+         "return"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "filter_to_sheet"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "where": {
+          "$ref": "#/$defs/condition"
+         },
+         "output_sheet": {
+          "type": "string"
+         },
+         "cols": {
+          "type": "array",
+          "items": {
+           "$ref": "#/$defs/col"
+          }
+         },
+         "mode": {
+          "enum": [
+           "formula",
+           "value"
+          ],
+          "default": "formula"
+         }
+        },
+        "required": [
+         "where",
+         "output_sheet"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "if": {
+      "properties": {
+       "op": {
+        "const": "unique_to_sheet"
+       }
+      }
+     },
+     "then": {
+      "properties": {
+       "args": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+         "col": {
+          "$ref": "#/$defs/col"
+         },
+         "output_sheet": {
+          "type": "string"
+         },
+         "with_count": {
+          "type": "boolean",
+          "default": false
+         },
+         "count_header": {
+          "type": "string"
+         },
+         "mode": {
+          "enum": [
+           "formula",
+           "value"
+          ],
+          "default": "formula"
+         }
+        },
+        "required": [
+         "col",
+         "output_sheet"
+        ]
+       }
+      }
+     }
+    },
+    {
+     "properties": {
+      "op": {
+       "enum": [
+        "regex_replace",
+        "trim",
+        "delete_rows",
+        "dedupe",
+        "fill_empty",
+        "sort",
+        "add_column",
+        "conditional_format",
+        "number_format",
+        "group_aggregate",
+        "lookup_join",
+        "lookup_column",
+        "filter_to_sheet",
+        "unique_to_sheet",
+        "save",
+        "fs_mkdir",
+        "fs_backup",
+        "fs_new_workbook",
+        "fs_merge_workbooks",
+        "split_to_files"
+       ]
+      }
+     }
+    }
+   ]
+  }
+ }
+}

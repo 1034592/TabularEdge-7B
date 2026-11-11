@@ -1,0 +1,93 @@
+{
+ "sumifs": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 4.909,
+  "n": 40
+ },
+ "sumifs[SUMIF]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 3.402,
+  "n": 21
+ },
+ "sumifs[SUMIFS]": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 6.574,
+  "n": 19
+ },
+ "vlookup": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 3.215,
+  "n": 30
+ },
+ "xlookup": {
+  "pair_acc": 0.05,
+  "top1": 0.0,
+  "margin": -2.856,
+  "n": 20
+ },
+ "filter": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.797,
+  "n": 20
+ },
+ "unique": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 8.244,
+  "n": 20
+ },
+ "textjoin": {
+  "pair_acc": 0.9,
+  "top1": 0.9,
+  "margin": 0.656,
+  "n": 20
+ },
+ "xmatch": {
+  "pair_acc": 0.0,
+  "top1": 0.0,
+  "margin": -5.266,
+  "n": 20
+ },
+ "textbefore": {
+  "pair_acc": 0.0,
+  "top1": 0.0,
+  "margin": -3.609,
+  "n": 20
+ },
+ "textsplit": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.225,
+  "n": 20
+ },
+ "vstack": {
+  "pair_acc": 1.0,
+  "top1": 0.0,
+  "margin": 3.237,
+  "n": 20
+ },
+ "sortby": {
+  "pair_acc": 1.0,
+  "top1": 1.0,
+  "margin": 5.972,
+  "n": 20
+ },
+ "ifs": {
+  "pair_acc": 0.0,
+  "top1": 0.0,
+  "margin": -4.969,
+  "n": 20
+ },
+ "regex": {
+  "pair_acc": 0.5,
+  "top1": 0.5,
+  "margin": 0.066,
+  "n": 20
+ },
+ "ppl": 15.7824
+}
