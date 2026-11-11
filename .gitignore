@@ -12,3 +12,10 @@ models/
 test_cases/*.xlsx
 test_cases/_original/
 test_cases/big/
+
+# 开发期缓存与日志
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+*.log
+.DS_Store

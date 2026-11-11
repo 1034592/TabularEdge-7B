@@ -31,15 +31,15 @@ model-index:
 
 # TabularEdge-7B (GGUF)
 
-**Privacy-First Edge LLM for Local Spreadsheets.** TabularEdge-7B compiles plain-language spreadsheet requests (Chinese, English or mixed) into a JSON **Action Plan**, and the open-source [TabularEdge engine](https://github.com/<GITHUB_USER>/TabularEdge-7B) executes that plan deterministically on local `.xlsx` files. The model runs fully offline on a laptop GPU with **4 GB of VRAM**.
+**Privacy-First Edge LLM for Local Spreadsheets.** TabularEdge-7B compiles plain-language spreadsheet requests (Chinese, English or mixed) into a JSON **Action Plan**, and the open-source [TabularEdge engine](https://github.com/1034592/TabularEdge-7B) executes that plan deterministically on local `.xlsx` files. The model runs fully offline on a laptop GPU with **4 GB of VRAM**.
 
 | | |
 |---|---|
-| **Model repository** | `https://huggingface.co/<HF_USER>/TabularEdge-7B-GGUF` *(placeholder)* |
-| **Code** | `https://github.com/<GITHUB_USER>/TabularEdge-7B` *(placeholder)* |
+| **Model repository** | `https://huggingface.co/AngranFei/TabularEdge-7B-GGUF` |
+| **Code** | `https://github.com/1034592/TabularEdge-7B` |
 | **File** | `TabularEdge-7B-Q4_K_M.gguf`: 4.36 GiB, sha256 `d00bdc02d74aa29a397e0f73c07903d8188022b345c11493893009ec0afd29bb` |
 | **Base model** | [Qwen/Qwen2.5-Coder-7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct) (7.61B parameters, 28 layers, GQA 28Q/4KV, Apache-2.0) |
-| **Adaptation** | 3 gated ROME rank-one weight edits → bf16 LoRA SFT (r=32) → LoRA continuation with raw-text regularization → merge → Q4_K_M quantization |
+| **Adaptation** | 3 gated ROME rank-one weight edits (3 further edits rejected by the gate) → bf16 LoRA SFT (r=32) → LoRA continuation with raw-text regularization → merge → Q4_K_M quantization |
 | **Languages** | Chinese, English, code-mixed |
 | **License** | Apache-2.0 (derivative of an Apache-2.0 base; see NOTICE) |
 
@@ -95,7 +95,7 @@ Recommended settings:
 - `cache_prompt: true`, and prefill the system prompt and table profile while the user is still typing; this gives a first token in about 0.2 s on a 4 GB GPU;
 - `max_tokens` of about 600–2400, depending on prompt length.
 
-Use [`tabularedge.llm_parser.parse`](https://github.com/<GITHUB_USER>/TabularEdge-7B/blob/main/tabularedge/llm_parser.py). It handles streaming, sanitizing, validation and repair rounds.
+Use [`tabularedge.llm_parser.parse`](https://github.com/1034592/TabularEdge-7B/blob/main/tabularedge/llm_parser.py). It handles streaming, sanitizing, validation and repair rounds.
 
 ## Training
 
@@ -117,10 +117,23 @@ No third-party dataset and no user or customer data was used. The hand-written e
    - perplexity within tolerance (15.78 → 15.82);
    - first-token specificity of at least 17/18.
 
-   Three IFS edits (L18, L20, L21) **failed** the gate and were rejected; IFS was left to fine-tuning.
-3. **LoRA SFT:** bf16, r=32, 1 epoch over 35,526 samples, effective batch 16, on 1× RTX 4090 (4.9 h). A contrastive counterfactual loss term (λ=0.2) was used in earlier iterations.
-4. **Continuation:** lr 1e-4, 1 epoch over 12,959 samples (119 min). Without the raw-text regularization, raw-text perplexity rose **+56 %**. With it, perplexity ended **2.4 % below** the base (15.78 → 15.40).
-5. **Merge → GGUF → Q4_K_M** with llama.cpp. All evaluations below use the quantized file.
+   Three IFS edits (L18, L20, L21) **failed** the gate and were rejected.
+
+   **Why `IFS` resisted rank-one editing.** A rank-one update rewrites one key→value association inside a single MLP. The three families that landed were first-token *selection* errors — the function was known but ranked below a competitor — which is exactly that shape. `IFS` failed differently: the model emitted structurally degenerate nested branches, a sequence-level generation failure that no single key→value association controls. That is outside the stated scope of the method, not a hyper-parameter problem.
+
+3. **Repetition neurons (explored, not shipped).** As a second route for `IFS`, repetition neurons were located with the activation-difference method of Hiraoka & Inui (NAACL 2025, [arXiv:2410.13497](https://arxiv.org/abs/2410.13497)) — mean MLP activation on "pre-repeat" versus "in-repeat" spans — then damped by scaling the corresponding `down_proj` columns. Sweep in [`results/final/measure/alpha_sweep.json`](results/final/measure/alpha_sweep.json):
+
+   | scale α | `IFS` first-token acc. | other 12 families | chat PPL |
+   |---|---|---|---|
+   | 0.85 | 0.50 | all 1.00 | 22.68 |
+   | 0.70 | 0.45 | all 1.00 | 20.77 |
+   | 0.55 | 0.15 | all 1.00 | 19.31 |
+
+   Damping monotonically **hurt** `IFS` while the other twelve families stayed at 1.00, so this path was rejected too. `IFS` was finally solved by fine-tuning. Both negative results are reported here because together they bound where weight-space surgery helps and where it does not.
+
+4. **LoRA SFT:** bf16, r=32, 1 epoch over 35,526 samples, effective batch 16, on 1× RTX 4090 (4.9 h). A contrastive counterfactual loss term (λ=0.2) was used in earlier iterations.
+5. **Continuation:** lr 1e-4, 1 epoch over 12,959 samples (119 min). Without the raw-text regularization, raw-text perplexity rose **+56 %**. With it, perplexity ended **2.4 % below** the base (15.78 → 15.40).
+6. **Merge → GGUF → Q4_K_M** with llama.cpp. All evaluations below use the quantized file.
 
 ## Evaluation
 
@@ -187,7 +200,7 @@ On an RTX 4090 the same model generates 141.6 tok/s (tg128).
   title  = {TabularEdge-7B: Privacy-First Edge LLM and Native Execution Engine for Local Spreadsheets},
   author = {Angran Fei},
   year   = {2026},
-  url    = {https://github.com/<GITHUB_USER>/TabularEdge-7B}
+  url    = {https://github.com/1034592/TabularEdge-7B}
 }
 ```
 

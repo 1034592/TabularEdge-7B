@@ -26,6 +26,7 @@ TabularEdge-7B is built for that setting:
 | **Commodity hardware** | Q4_K_M GGUF (4.36 GiB). 21 of 28 layers run on an RTX 3050 **4 GB** laptop GPU and the rest on CPU, at about 17 tok/s. A CPU-only fallback runs at about 8.5 tok/s. |
 | **LLMs make mistakes** | The model never writes code. It emits a typed **Action Plan** (JSON, 20 ops). Each plan is sanitized, schema-validated and semantically checked before anything runs. Destructive steps always ask for confirmation, and overwrites are backed up first. |
 | **Real-world files are huge and messy** | A pure-stdlib **streaming OOXML reader** profiles a 150 MB, 761k-row workbook in about 0.1–0.3 s. It also handles title rows, phantom formatted columns and text-vs-number keys. |
+| **Weight edits need a stop rule** | Three ROME rank-one edits were kept only after passing a gate: no function family regresses, perplexity stays within tolerance, first-token specificity ≥ 17/18. **Three further edits and a repetition-neuron ablation failed that gate and were rejected**, and both negative results are reported in the [model card](MODEL_CARD.md#procedure). |
 | **Old Office installs** | A **compatibility layer** rewrites Excel 365 functions (XLOOKUP / UNIQUE / FILTER …) into Excel 2019-safe formulas, or writes computed values when no rewrite exists. |
 
 ### What it is good at (and what it is not)
@@ -158,8 +159,8 @@ python test_cases/verify_gold.py outputs/gold   # independent row-by-row verific
 ### 2. Get the model
 
 ```bash
-# Placeholder: replace with the published repository
-huggingface-cli download <HF_USER>/TabularEdge-7B-GGUF TabularEdge-7B-Q4_K_M.gguf --local-dir models
+# Weights live on Hugging Face; the code repository carries no model files.
+huggingface-cli download AngranFei/TabularEdge-7B-GGUF TabularEdge-7B-Q4_K_M.gguf --local-dir models
 ```
 
 ### 3. Start the local runtime
